@@ -1,8 +1,28 @@
 
-
 .App-link {
   color: #61dafb;
 }
+.bg-dark{
+  background-color: #3A4256;
+}
+.custom-dark{
+  color: #3A4256;
+}
+.bg-primary{
+  background-color: #1ED2D4;
+}
+.custom-primary{
+  color: #1ED2D4;
+}
+.btn-info{
+  font-weight: 600 !important;
+  padding: 10px !important;
+  border-radius: 5px !important;
+  background: linear-gradient(to right, #18D2B5 0%, #10CFE6 100%) !important;
+  color: white !important;
+}
+
+
 
 @keyframes App-logo-spin {
   from {

@@ -1,5 +1,6 @@
 
 import './App.css';
+import Home from './Components/Home/Home/Home';
 
 // import {
 //   BrowserRouter as Router,
@@ -15,14 +16,12 @@ function App() {
   //   </Routes>
   // </Router>
 
-  // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-  // import { faCoffee } from '@fortawesome/free-solid-svg-icons'
-
-  // <FontAwesomeIcon icon={faCoffee} />
+  
+ 
 
   return (
     <div >
-
+      <Home/>
     </div>
   );
 }
