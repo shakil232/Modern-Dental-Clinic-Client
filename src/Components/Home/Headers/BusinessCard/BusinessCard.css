@@ -1,0 +1,12 @@
+
+.info-primary{
+    background-color: #1ED2D4;
+}
+.info-dark{
+    background-color: #3A4256;
+}
+.business-container{
+    width: 250px;
+    height: 100px;
+    padding: 30px;
+}

@@ -1,0 +1,22 @@
+
+.header-bg{
+    background-image: url('../../../../images/chairbg.png');
+    background-repeat: no-repeat;
+    background-position: left, center;
+    background-size: cover
+  } 
+/* .header-container {
+    height:700px;
+    position:relative;
+}
+.header-container::after{
+    height:700px;
+    content:' ';
+    position: absolute;
+    top: 0;
+    width: 33%;
+    right: 0;
+    background-color: #3A4256;
+    z-index: -50;
+    
+} */

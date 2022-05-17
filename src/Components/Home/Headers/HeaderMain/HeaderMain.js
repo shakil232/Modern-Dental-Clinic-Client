@@ -1,10 +1,27 @@
 import React from 'react';
+// image 
+import Chair from '../../../../images/chair.png'
 
 const HeaderMain = () => {
     return (
-        <div>
-            
-        </div>
+            <main className="container ">
+                <div style={{height:'500px'}} className="d-flex align-content-center row g-4">
+                    <div className="col-md-4 offset-md-1 m-auto">
+                        <h2 className="custom-dark "> Your New Smile
+                        <br />
+                          Starts Here
+                    </h2>
+                        <p className="mt-2 text-muted text-justify">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam qui blanditiis illo, autem velit sequi!
+                    </p>
+                        <button className="btn btn-info border-0 rounded-3 mb-2">Get Appointment </button>
+                    </div>
+                    <div className="col-md-6 ">
+                        <img className="img-fluid" src={Chair} alt="chair" />
+
+                    </div>
+                </div>
+            </main>
     );
 };
 

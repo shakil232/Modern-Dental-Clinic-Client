@@ -1,4 +1,5 @@
 import React from 'react';
+import BusinessCard from '../BusinessCard/BusinessCard'
 import { faPhone, faClock, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -6,29 +7,37 @@ import { faPhone, faClock, faLocationDot } from '@fortawesome/free-solid-svg-ico
 const businessInfo = [
     {
         title: 'Opening Hours',
-        description: ' Lorem ipsum is simply dummy text of the pri ',
-        icon : <FontAwesomeIcon icon={faClock} />,
-        background: primary
+        description: ' Lorem ipsum is simply ',
+        icon : faClock,
+        background: 'primary'
     },
     {
         title: 'Visit our location',
         description: 'Brooklyn, NY 10036,USA',
-        icon : <FontAwesomeIcon icon={faLocationDot} />,
-        background: dark
+        icon : faLocationDot,
+        background: 'dark'
     },
     {
         title: 'Contact us now',
         description: '+000 123 45524',
-        icon : <FontAwesomeIcon icon={faPhone} />,
-        background: primary
+        icon : faPhone,
+        background: 'primary'
     }
 ]
 
 const BusinessInfo = () => {
     return (
-        <div>
-            
-        </div>
+        <section className="container">
+            <main className=" d-flex justify-content-center ">
+                <div className=" row ">
+                    {
+                        businessInfo.map(business =>
+                            <BusinessCard business={business}></BusinessCard>
+                        )
+                    }
+                </div>
+            </main>
+        </section>
     );
 };
 

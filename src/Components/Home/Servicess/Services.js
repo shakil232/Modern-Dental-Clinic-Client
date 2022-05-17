@@ -29,10 +29,10 @@ const serviceInfo = [
 
 const Services = () => {
     return (
-        <section className="container mt-4">
+        <section className="container mt-5 pt-5">
             <div className="text-center">
                 <h6 style={{fontWeight:'700'}} className="custom-primary"> OUR SERVICES</h6>
-                <h2 style={{fontWeight:'700'}} className="custom-dark mt-2">Services We Provide</h2>
+                <h2 className="custom-dark mt-2">Services We Provide</h2>
             </div>
             <main className="mt-2 d-flex align-content-center justify-content-center ">
                 <div className=" row ">
