@@ -1,0 +1,11 @@
+
+.cursor{
+    cursor: pointer;
+}
+.icons{
+    color: rgb(219, 18, 135);
+    transition: 2s;
+}
+.icons :hover{
+    color: rgb(34, 238, 153);
+}

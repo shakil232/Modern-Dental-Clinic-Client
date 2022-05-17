@@ -4,11 +4,7 @@ import AppointmentFrom from '../AppointmentFrom/AppointmentFrom'
 
 const AppointmentBooking = ({ booking, date }) => {
     const { name, time, space, price } = booking;
-    const [modalIsOpen, setIsOpen] = useState(false);
-
-   const closeModal = ()=> {
-        setIsOpen(false);
-    }
+    const [lgShow, setLgShow] = useState(false);
 
     return (
         <div className="col-md-4 g-4">
@@ -20,13 +16,13 @@ const AppointmentBooking = ({ booking, date }) => {
                     <Card.Text className="text-muted mt-1 fs-6">
                         {space} Spaces Available
                     </Card.Text>
-                    <button onClick={()=> setIsOpen(true)} className="btn btn-info border-0 rounded-3 mt-1">Book Appointment </button>
+                    <button onClick={()=> setLgShow(true)} className="btn btn-info border-0 rounded-3 mt-1">Book Appointment </button>
                 </Card.Body>
             </Card>
 
             <AppointmentFrom
-                    modalIsOpen={modalIsOpen}
-                    closeModal={closeModal}
+                   lgShow={lgShow}
+                   setLgShow={setLgShow}
                     booking={booking}
                     date={date}
                 ></AppointmentFrom>
