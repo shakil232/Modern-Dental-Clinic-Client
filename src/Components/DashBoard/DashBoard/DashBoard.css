@@ -1,0 +1,12 @@
+
+.offcanvas-backdrop.show {
+    opacity: -0.5 !important;
+}
+
+.offcanvas-start {
+    border: 0px !important;
+    box-shadow: 3px 13px 5px lightgrey;
+    width: 230px !important;
+    transition: 0.8s !important;
+}
+

@@ -1,39 +1,124 @@
 import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import NavBar from '../Shared/NavBar/NabBar'
+import useAuth from '../../hooks/useAuth';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './Login.css'
 // icons 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGoogle, faGithub } from '@fortawesome/free-brands-svg-icons'
+
+
+
 const Login = () => {
     const [newUser, setNewUser] = useState(false);
 
-    // filedValiedtion
+    // firebaseAUth 
+    const { 
+        user,
+        setUser, 
+        googleLogin,
+        facebookLogin,
+        githubLogin,
+        createWithEmailAndPassword,
+        signWithEmailAndPassword,
+    } = useAuth();
+
+    // user-Redirect 
+    let navigate = useNavigate();
+    let location = useLocation();
+    let  from  = location.state?.from?.pathname || "/" ;
+ 
+    // formValidation
     const handelBlur = e => {
-        console.log(e.target.name, e.target.value)
+        let isFieldValid;
+
+        if (e.target.name === 'name') {
+            isFieldValid = e.target.value;
+        }
+        if (e.target.name === 'email') {
+            isFieldValid = /\S+@\S+\.\S+/.test(e.target.value);
+        }
+        if (e.target.name === 'password') {
+            const passLength = e.target.value >= 6;
+            const passValid = /\d{1}/.test(e.target.value)
+            isFieldValid = passLength && passValid;
+        }
+        if (isFieldValid) {
+            const newUserInfo = { ...user };
+            newUserInfo[e.target.name] = e.target.value;
+            setUser(newUserInfo)
+        }
 
     };
 
     // fromSubmit 
     const handelSubmit = e => {
-        console.log(e)
         e.preventDefault();
+        
+        // CreateUserWithEmailAndPassword 
+        if(newUser && user.name && user.email && user.password){
+            createWithEmailAndPassword(user.name, user.email, user.password)
+            .then(res =>{
+                setUser(res);
+                navigate(from, {replace:true});
+            })
+            .catch(err =>{
+                setUser(err)
+            })
+        
+        };
+
+        // signInWithEmailAndPassword 
+        if(!newUser && user.email && user.password){
+            signWithEmailAndPassword(user.email, user.password)
+            .then(res =>{
+                setUser(res);
+                navigate(from, {replace:true})
+            })
+            .catch(err =>{
+                setUser(err)
+            })
+        }
     };
 
 
     {/* fbSignIn  */ }
-    const handelFbSignIn = () => {
+    const handelFbSignIn = () => { 
+        facebookLogin()
+        .then(res =>{
+            setUser(res);
+            navigate(from, {replace:true})
+        })
+        .catch(err =>{
+            setUser(err)
+        })
 
+        
     };
 
     {/* googleSignIn  */ }
     const handelGoogleSignIn = () => {
-
+        googleLogin()
+        .then(res =>{
+            setUser(res);
+            navigate(from, {replace:true})
+        })
+        .catch(err =>{
+            setUser(err)
+        })
     };
 
     {/* githubSignIn  */ }
     const handelGithubSignIn = () => {
-
+        githubLogin()
+        .then(res =>{
+            setUser(res);
+            navigate(from, {replace:true})
+        })
+        .catch(err =>{
+            setUser(err)
+        })
     };
 
 
@@ -41,8 +126,15 @@ const Login = () => {
     return (
         <section>
             <NavBar />
-            <main className="container mt-5">
-                <div className="row">
+            <main className="container mt-5 mb-5">
+                {/* success & error handel  */}
+                <div className="text-center">
+                   <h3 className="text-danger">{user.err}</h3> 
+                  {
+                      user.success && <h6 className="text-success">User {newUser ? "Created" : "LoggedIn"} Successfully..</h6>
+                  }
+                </div>
+                <div className="row mt-3">
                     <div className="col-md-6 m-auto shadow-lg rounded-3 ">
                         <div className="p-5">
                             {
@@ -95,7 +187,7 @@ const Login = () => {
                                             <input className="form-control btn btn-info border-0 rounded-3 " type="submit" value="Login" />
                                         </div>
                                         <div className="text-center mt-4">
-                                            <h6 style={{ fontWeight: '9OO' }} className="custom-dark">Don't have an account? 
+                                            <h6 style={{ fontWeight: '9OO' }} className="custom-dark">Don't have an account?
                                         <span onClick={() => setNewUser(true)} className="text-success ms-1 text-decoration-underline cursor">Create an account</span>
                                             </h6>
                                         </div>
@@ -112,14 +204,14 @@ const Login = () => {
                         <h3 className="custom-primary"  >Or</h3>
                         <h5 className="custom-dark ">Continue with </h5>
                     </div>
-                   {/* icons  */}
+                    {/* icons  */}
                     <div className="d-flex justify-content-center align-content-center fs-3 mb-3 p-3">
-                         {/* fbSignIn  */}
+                        {/* fbSignIn  */}
                         <FontAwesomeIcon onClick={handelFbSignIn} className="icons" icon={faFacebook} />
                         {/* googleSignIn  */}
                         <FontAwesomeIcon onClick={handelGoogleSignIn} className="ms-3 icons" icon={faGoogle} />
                         {/* githubSignIn  */}
-                        <FontAwesomeIcon onClick={handelGithubSignIn} className="ms-3 icons"  icon={faGithub} />
+                        <FontAwesomeIcon onClick={handelGithubSignIn} className="ms-3 icons" icon={faGithub} />
                     </div>
                 </div>
 

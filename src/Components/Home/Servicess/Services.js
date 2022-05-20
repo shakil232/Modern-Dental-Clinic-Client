@@ -5,6 +5,7 @@ import ServicesCard from '../ServicesCard/ServicesCard';
 import Fluoride from '../../../images/Fluoride.png';
 import Whitening from '../../../images/Whitening.png';
 import Cavity from '../../../images/Cavity.png';
+import { Link } from 'react-router-dom';
 
 const serviceInfo = [
     {
@@ -44,8 +45,9 @@ const Services = () => {
                 </div>
             </main>
           <div className="text-center mt-4">
-          <button className=" btn btn-info"> Explore More </button>
+          <Link to="/appointment" className=" btn btn-info"> Explore More </Link>
           </div>
+          
         </section>
     );
 };

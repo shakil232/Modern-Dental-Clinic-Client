@@ -9,19 +9,31 @@ import { Modal } from 'react-bootstrap';
 const AppointmentFrom = ({ booking, date, lgShow, setLgShow }) => {
 
     const { register, handleSubmit} = useForm();
-    const [ bookingInfo, setBookingInfo ] = useState();
+    const [ bookingInfo, setBookingInfo ] = useState({
+        // displayName: user.displayName,
+        // email: user.email,
+        // phone: ''
+    });
 
 
     // from-submit 
     const onSubmit = data =>{
-        console.log(data)
+        const presentInfo = {
+            name: data.name,
+            email: data.email,
+            phone: data.phone,
+            price: booking.price,
+            date: data,
+            time: booking.time 
+        }
+        console.log('presentInfo', presentInfo)
     };
 
     return (
-        <div>
+        <>
             <Modal
-                size="sm"
-                show={smShow}
+                size="lg"
+                show={lgShow}
                 onHide={() => setLgShow(false)}
             >
                 <Modal.Header closeButton>
@@ -34,16 +46,16 @@ const AppointmentFrom = ({ booking, date, lgShow, setLgShow }) => {
                     <form onSubmit={handleSubmit(onSubmit)}>
 
                         <div >
-                            <input className="form-control" name="time" defaultValue={booking.time}  {...register("time"})}  disabled  />
+                            <input className="form-control" name="time" defaultValue={booking.time}  {...register("time")}  disabled  />
                         </div>
                         <div>
-                            <input className="form-control mt-2" type="text" name="name"  {...register("name")} />
+                            <input className="form-control mt-2" type="text" name="name" placeholder="Your name" {...register("name")} />
                         </div>
                         <div>
-                            <input className="form-control mt-2" type="email" name="email"  {...register("email")} />
+                            <input className="form-control mt-2" type="email" name="email" placeholder="Your email"  {...register("email")} />
                         </div>
                         <div>
-                            <input className="form-control mt-2" type="text" name="phone" {...register("phone")} />
+                            <input className="form-control mt-2" type="text" name="phone" placeholder="Phone Number"  {...register("phone")} />
                         </div>
                         <div>
                             <input className="form-control mt-2" type="text" name="price" defaultValue={booking.price} {...register("price")} disabled />
@@ -59,7 +71,7 @@ const AppointmentFrom = ({ booking, date, lgShow, setLgShow }) => {
 
                 </Modal.Body>
             </Modal>
-        </div>
+        </>
     );
 };
 

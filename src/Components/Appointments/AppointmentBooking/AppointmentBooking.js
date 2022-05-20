@@ -4,7 +4,7 @@ import AppointmentFrom from '../AppointmentFrom/AppointmentFrom'
 
 const AppointmentBooking = ({ booking, date }) => {
     const { name, time, space, price } = booking;
-    const [lgShow, setLgShow] = useState(false);
+    const [ lgShow, setLgShow] = useState(false);
 
     return (
         <div className="col-md-4 g-4">

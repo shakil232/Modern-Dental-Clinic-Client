@@ -23,7 +23,7 @@ function App() {
             <Route exact path="/home" element={<Home />} />
             <Route path="/appointment" element={<Appointment />} />
             <Route path="review" element={<Review />} />
-            <Route path="/dashBoard" element={<DashBoard />} />
+            <Route path="/dashBoard/*" element={<DashBoard />} />
             <Route path="/login" element={<Login />} />
             <Route path="/" element={<Home />} />
             <Route exact path="*" element={<NotFound />} />

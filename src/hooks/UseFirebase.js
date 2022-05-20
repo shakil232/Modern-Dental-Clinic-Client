@@ -1,4 +1,3 @@
-import fireInitialization from "../Components/Login/Firebase/firebase.init";
 import {
     getAuth,
     signInWithPopup,
@@ -10,16 +9,16 @@ import {
     onAuthStateChanged,
     updateProfile,
     signOut
-
 } from "firebase/auth"
 import { useEffect, useState } from "react";
+import firebaseInitialization from "../Components/Login/Firebase/firebase.init";
 
 
 // firebaseInitialize
-fireInitialization()
+firebaseInitialization()
 
 const useFirebase = () => {
-    const auth = getAuth(app);
+    const auth = getAuth();
     const [user, setUser] = useState({
         name: '',
         email: '',
@@ -34,7 +33,7 @@ const useFirebase = () => {
         const googleProvider = new GoogleAuthProvider();
         return signInWithPopup(auth, googleProvider)
             .then(res => {
-                const { displayName, email } = result.user;
+                const { displayName, email } = res.user;
                 const signInUser = {
                     displayName: displayName,
                     email: email,
@@ -56,7 +55,7 @@ const useFirebase = () => {
         const fbProvider = new FacebookAuthProvider();
         return signInWithPopup(auth, fbProvider)
             .then(res => {
-                const { displayName, email } = result.user;
+                const { displayName, email } = res.user;
                 const signInUser = {
                     displayName: displayName,
                     email: email,
@@ -79,7 +78,7 @@ const useFirebase = () => {
         const provider = new GithubAuthProvider();
         return signInWithPopup(auth, provider)
             .then(res => {
-                const { displayName, email } = result.user;
+                const { displayName, email } = res.user;
                 const signInUser = {
                     displayName: displayName,
                     email: email,
@@ -162,6 +161,7 @@ const useFirebase = () => {
 
     return {
         user,
+        setUser,
         googleLogin,
         facebookLogin,
         githubLogin,
