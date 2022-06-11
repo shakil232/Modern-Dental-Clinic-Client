@@ -45,7 +45,7 @@ const Services = () => {
                 </div>
             </main>
           <div className="text-center mt-4">
-          <Link to="/appointment" className=" btn btn-info"> Explore More </Link>
+          <Link to="/appointment" className=" btn btn-main border-0 rounded-3 mb-2"> Explore More </Link>
           </div>
           
         </section>

@@ -16,7 +16,7 @@ const NabBar = () => {
     };
 
     return (
-        <Navbar collapseOnSelect expand="lg" variant="dark">
+        <Navbar collapseOnSelect expand="lg" variant="light" bg="light" sticky="top" >
 
             <Container>
                 <Navbar.Brand as={Link} to="/" className="">
@@ -43,8 +43,8 @@ const NabBar = () => {
                                                 width="40"
                                                 height="40"
                                                 roundedCircle
-                                                src={user?.photo} />
-                                            :
+                                                src={user?.photo} /> 
+                                                :
                                             <Image
                                                 width="40"
                                                 height="40"

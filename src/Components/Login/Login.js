@@ -3,7 +3,6 @@ import { Form, FloatingLabel, Button, Row, Col } from 'react-bootstrap';
 import NavBar from '../Shared/NavBar/NabBar'
 import useAuth from '../../hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
-import './Login.css'
 // icons 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGooglePlus, faGithub } from '@fortawesome/free-brands-svg-icons'
@@ -150,7 +149,7 @@ const Login = () => {
 
                             // Register
                             < Form onSubmit={handelSubmit} className="p-3 shadow ">
-                                <h5 className="text-muted">Create an account </h5>
+                                <h5 className="custom-dark">Create an account </h5>
 
                                 {/* inputs  */}
                                 <FloatingLabel className="mt-3" controlId="floatingInput" label="Name" >
@@ -167,12 +166,12 @@ const Login = () => {
                                 </FloatingLabel>
                                 {passCheck && <span style={{ fontWeight: "600" }} className="text-danger mt-2 mb-1">password Atleast six characters and with One digit</span>}
 
-                                <Button type="submit" className="form-control btn-success border-0 rounded-3 text-white mt-3" >Create an account </Button>
+                                <Button type="submit" className="form-control btn-main border-0 rounded-3 mt-3" >Create an account </Button>
 
                                 <div className="d-flex justify-content-center mt-3">
                                     <p>
                                         <small style={{ fontWeight: '700' }} className="text-secondary" >Already have an account ?</small>
-                                        <small onClick={() => setNewUser(false)} className="cursor  ms-2"> Login </small>
+                                        <small onClick={() => setNewUser(false)} className="cursor ms-2"> Login </small>
                                     </p>
 
                                 </div>
@@ -180,7 +179,7 @@ const Login = () => {
 
                             // login
                             <Form onSubmit={handelSubmit} className="p-3 shadow">
-                                <h5 className="text-muted">Login</h5>
+                                <h5 className="custom-dark">Login</h5>
 
                                 {/* inputs  */}
                                 <FloatingLabel className="mt-3" controlId="floatingInput" label="Email address" >
@@ -191,7 +190,7 @@ const Login = () => {
                                     <Form.Control onBlur={handelBlur} name="password" type="password" placeholder="Password" />
                                 </FloatingLabel>
 
-                                <Button type="submit" className="form-control btn-success border-0 rounded-3 text-white mt-3" >Login</Button>
+                                <Button type="submit" className="form-control btn-main border-0 rounded-3 mt-3" >Login</Button>
 
                                 <div className="d-flex justify-content-center mt-3">
                                     <p>
@@ -207,7 +206,7 @@ const Login = () => {
 
                 {/* Continue-Section  */}
                 <div className="m-auto">
-                    <h3 className="text-center text-info my-3">Or</h3>
+                    <h3 className="text-center custom-primary my-3">Or</h3>
 
                     {/* googleLogin */}
                     <div className="d-flex justify-content-center align-content-center">
@@ -215,7 +214,7 @@ const Login = () => {
                             className="shadow text-muted rounded-3 p-1 cursor"
                             style={{ width: "260px" }}
                         >
-                            <FontAwesomeIcon className="me-3 mx-3 text-danger fs-3" icon={faGooglePlus} />
+                            <FontAwesomeIcon className="me-3 mx-3 custom-primary fs-3" icon={faGooglePlus} />
                             Continue with Google
                         </p>
                     </div>
@@ -226,7 +225,7 @@ const Login = () => {
                             className="shadow text-muted rounded-3 p-1 cursor"
                             style={{ width: "260px" }}
                         >
-                            <FontAwesomeIcon className="me-3 mx-3 text-danger fs-3" icon={faFacebook} />
+                            <FontAwesomeIcon className="me-3 mx-3 custom-primary fs-3" icon={faFacebook} />
                             Continue with Facebook
                         </p>
                     </div>
@@ -237,7 +236,7 @@ const Login = () => {
                             className="shadow text-muted rounded-3 p-1 cursor"
                             style={{ width: "260px" }}
                         >
-                            <FontAwesomeIcon className="me-3 mx-3 text-danger fs-3" icon={faGithub} />
+                            <FontAwesomeIcon className="me-3 mx-3 custom-primary fs-3" icon={faGithub} />
                             Continue with Github
                         </p>
                     </div>

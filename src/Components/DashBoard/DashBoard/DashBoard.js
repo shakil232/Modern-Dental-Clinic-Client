@@ -8,26 +8,37 @@ import ManageAppointment from '../ManageAppointment/ManageAppointment';
 import AddService from '../AddService/AddService';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import RecentAppointment from '../RecentAppointment/RecentAppointment';
-
-
+import UpdateService from '../UpdateService/UpdateService';
 // icons 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faXmark,
     faList,
-    faHouseChimney,
+    faHouseUser,
+    faClipboardList,
     faListCheck,
     faUserPlus,
-    faFileCirclePlus,
-    faGear
+    faCirclePlus,
+    faGear,
+    faLeftLong
 } from '@fortawesome/free-solid-svg-icons';
-import UpdateService from '../UpdateService/UpdateService';
+import useAuth from '../../../hooks/useAuth';
 
 
 
 
 const DashBoard = () => {
+    const { user, logOut } = useAuth();
 
+    //   logOut-Handel 
+    const handelLogOut = () => {
+        logOut({});
+        // toast.success("Logged Out", {
+        //     duration: 4000,
+        // });
+    };
+    
+    // sidebar-open-off 
     const [show, setShow] = useState(true);
     const margin = {
         marginLeft: '230px',
@@ -37,15 +48,17 @@ const DashBoard = () => {
         marginLeft: '0px',
         width: '100%',
         transition: "1s"
-    }
+    };
 
     return (
         <section className="dashboard-bg pb-5 h-auto">
             <Offcanvas show={show} onHide={() => setShow(false)}>
+
+                {/* sideBar-links  */}
                 <Offcanvas.Header >
                     <Link className="text-decoration-none custom-primary" to="/">
                         <Offcanvas.Title>
-                            <FontAwesomeIcon className="text-secondary" icon={faHouseChimney} /> Dental-Clinic
+                            <FontAwesomeIcon className="custom-dark me-1" icon={faHouseUser} /> Dental-Clinic
                         </Offcanvas.Title>
                     </Link>
                 </Offcanvas.Header>
@@ -54,27 +67,27 @@ const DashBoard = () => {
 
                         <li className="">
                             <Link style={{ fontWeight: '600' }} className="text-decoration-none custom-dark" to="appointments" >
-                                <FontAwesomeIcon className="custom-primary me-2 " icon={faListCheck} /> DashBoard
+                                <FontAwesomeIcon className="text-primary me-2 " icon={faClipboardList} /> All Appointment
                             </Link>
                         </li>
                         <li className="mt-3">
                             <Link style={{ fontWeight: '600' }} className="text-decoration-none custom-dark" to="recentAppointments" >
-                                <FontAwesomeIcon className="custom-primary me-2 " icon={faListCheck} /> Recent Appointment
+                                <FontAwesomeIcon className="text-primary me-2 " icon={faListCheck} /> Recent Appointment
                             </Link>
                         </li>
                         <li className="mt-3">
                             <Link style={{ fontWeight: '600' }} className="text-decoration-none custom-dark" to="manageService" >
-                                <FontAwesomeIcon className="custom-primary me-2 " icon={faGear} /> Manage Service
+                                <FontAwesomeIcon className="text-primary me-2 " icon={faGear} /> Manage Service
                             </Link>
                         </li>
                         <li className="mt-3">
                             <Link style={{ fontWeight: '600' }} className="text-decoration-none custom-dark" to="addService" >
-                                <FontAwesomeIcon className="custom-primary me-2 " icon={faFileCirclePlus} /> Add Service
+                                <FontAwesomeIcon className="text-primary me-2 " icon={faCirclePlus} /> Add Service
                             </Link>
                         </li>
                         <li className="mt-3">
                             <Link style={{ fontWeight: '600' }} className="text-decoration-none custom-dark" to="makeAdmin" >
-                                <FontAwesomeIcon className="custom-primary me-2 " icon={faUserPlus} />  Make Admin
+                                <FontAwesomeIcon className="text-primary me-2 " icon={faUserPlus} />  Make Admin
                             </Link>
                         </li>
 
@@ -90,15 +103,16 @@ const DashBoard = () => {
                         <br />
                         <br />
                         <br />
-                        <Link className="btn btn-info border-0 rounded-3 " to="/home" >
-                            <FontAwesomeIcon className=" me-2 " icon={faHouseChimney} />  Back To Home
+                        <Link className="btn btn-main border-0 rounded-3 " to="/home" >
+                            <FontAwesomeIcon className=" me-2 " icon={faLeftLong} />  Back To Home
                         </Link>
 
                     </ul>
                 </Offcanvas.Body>
             </Offcanvas>
 
-            <div className="p-2"
+            {/* sidebar-top-nav  */}
+            <div className="py-2"
                 style={show ? { marginLeft: margin.marginLeft, transition: margin.transition } : { marginLeft: width.marginLeft, width: width.width, transition: width.transition }} >
 
                 <Navbar collapseOnSelect bg="light" expand="lg" variant="light">
@@ -106,14 +120,14 @@ const DashBoard = () => {
                         {
                             show ?
                                 <Button
-                                    className="text-danger fs-4 ms-3"
+                                    className="text-danger fs-3 ms-3"
                                     variant="bg-transparent" onClick={() => setShow(false)}>
                                     <FontAwesomeIcon icon={faXmark} />
                                 </Button>
 
                                 :
                                 <Button
-                                    className="text-secondary fs-4 ms-3"
+                                    className="text-info fs-3 ms-3"
                                     variant="bg-transparent" onClick={() => setShow(true)}>
                                     <FontAwesomeIcon icon={faList} />
                                 </Button>
@@ -121,29 +135,39 @@ const DashBoard = () => {
                         }
                     </Navbar.Brand>
                     <Nav className="ms-auto">
-                        <NavDropdown
-                            className='me-3'
-                            title={
+                        {
+                            user?.email &&
+                            <NavDropdown
+                                title={
+                                    user?.photo ?
+                                        <Image
+                                            width="40"
+                                            height="40"
+                                            roundedCircle
+                                            src={user?.photo} />
+                                        :
+                                        <Image
+                                            width="40"
+                                            height="40"
+                                            roundedCircle
+                                            src="https://i.ibb.co/5GzXkwq/user.png"
+                                            alt="user-pp" />
 
-                                <Image
-                                    width="40"
-                                    height="40"
-                                    roundedCircle
-                                    src="https://i.ibb.co/5GzXkwq/user.png"
-                                    alt="user-pp" />
+                                }
+                                id="collasible-nav-o,ag" >
 
-                            }
-                            id="collasible-nav-o,ag" >
+                                <strong className="text-center d-block mt-1">{user.displayName}</strong>
+                                <strong className="text-center d-block mt-2">{user.email}</strong>
+                                <div className="text-center my-2">
+                                    <Link onClick={handelLogOut} className=" btn btn-logout bg-transparent border-danger text-danger  rounded-3" to="/">LogOut</Link>
+                                </div>
+                            </NavDropdown>
 
-                            <strong className="text-center d-block mt-1">name</strong>
-                            <strong className="text-center d-block mt-2">email</strong>
-                            <div className="text-center my-2">
-                                <Link className=" btn btn-logout bg-transparent border-danger text-danger  rounded-3" to="/">LogOut</Link>
-                            </div>
-                        </NavDropdown>
+                        }
                     </Nav>
                 </Navbar>
 
+                {/* sidebar-Route  */}
                 <div className="mt-3">
                     <Routes>
                         <Route path="/" element={<AllAppointments />} />

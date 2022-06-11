@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 
 
 const Connected = () => {
@@ -27,7 +28,8 @@ const Connected = () => {
                                     <textarea type="text" name="message" class="form-control border-0" rows="4">your message </textarea>
                                 </div>
                                 <div class="mb-3 text-center">
-                                <input type="submit" className="form-control border-0 btn btn-info" value="Send"/>
+
+                                    <Button type="submit" className="form-control btn-main border-0 rounded-3 mb-2">Send</Button>
                                 </div>
                             </form>
                         </div>

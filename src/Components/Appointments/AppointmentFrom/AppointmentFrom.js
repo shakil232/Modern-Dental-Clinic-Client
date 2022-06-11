@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './AppointmentFrom.css'
 import { useForm } from "react-hook-form";
-import { Modal } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 
 
 
@@ -65,7 +65,7 @@ const AppointmentFrom = ({ booking, date, lgShow, setLgShow }) => {
                             <input className="form-control mt-2" name="date" defaultValue={date.toDateString()} {...register("date")} disabled />
                         </div>
                         <div className="form-group mt-4">
-                            <input className="btn btn-info form-control" type="submit" value="Submit" />
+                            <Button type="submit" className=" btn-main border-0 rounded-3 form-control" >Submit</Button>
                         </div>
 
                     </form>

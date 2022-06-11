@@ -28,7 +28,7 @@ const useFirebase = () => {
         password: '',
         success: false,
         error: '',
-        imageUrl: ''
+        photo: ''
     })
 
     // googleLogin
@@ -37,10 +37,11 @@ const useFirebase = () => {
         const googleProvider = new GoogleAuthProvider();
         return signInWithPopup(auth, googleProvider)
             .then(res => {
-                const { displayName, email } = res.user;
+                const { displayName, email, photoURL } = res.user;
                 const signInUser = {
                     displayName: displayName,
                     email: email,
+                    photo: photoURL,
                     success: true,
                     error: false
                 }
@@ -61,10 +62,11 @@ const useFirebase = () => {
         const fbProvider = new FacebookAuthProvider();
         return signInWithPopup(auth, fbProvider)
             .then(res => {
-                const { displayName, email } = res.user;
+                const { displayName, email, photoURL } = res.user;
                 const signInUser = {
                     displayName: displayName,
                     email: email,
+                    photo: photoURL,
                     success: true,
                     error: false
                 }
@@ -86,10 +88,11 @@ const useFirebase = () => {
         const provider = new GithubAuthProvider();
         return signInWithPopup(auth, provider)
             .then(res => {
-                const { displayName, email } = res.user;
+                const { displayName, email, photoURL } = res.user;
                 const signInUser = {
                     displayName: displayName,
                     email: email,
+                    photo: photoURL,
                     success: true,
                     error: false
                 }

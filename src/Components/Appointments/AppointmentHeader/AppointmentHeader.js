@@ -12,7 +12,7 @@ const AppointmentHeader = ({handelDateChange}) => {
             <main className="container ">
                 <div style={{ height: '600px' }} className="d-flex align-content-center row g-4">
                     <div className="col-md-4 offset-md-1 m-auto">
-                        <h2 className="custom-dark "> Appointment </h2>
+                        <h2 className="custom-primary "> Appointment </h2>
 
                         <div className="mt-4">
                             <Calendar className="border-0 shadow-lg " 

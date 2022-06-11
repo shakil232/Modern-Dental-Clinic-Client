@@ -16,7 +16,7 @@ const HeaderMain = () => {
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam qui blanditiis illo, autem velit sequi!
                     </p>
                     
-                        <Link to="/appointment" className="btn btn-info border-0 rounded-3 mb-2">Get Appointment </Link>
+                        <Link to="/appointment" className="btn btn-main border-0 rounded-3 mb-2">Get Appointment </Link>
                     </div>
                     <div className="col-md-6 ">
                         <img className="img-fluid" src={Chair} alt="chair" />

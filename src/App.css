@@ -1,7 +1,5 @@
 
-.App-link {
-  color: #61dafb;
-}
+
 .bg-dark{
   background-color: #3A4256;
 }
@@ -34,6 +32,8 @@
 {
   background-color: #1ED2D4 !important;
   color: white !important;
+  font-weight: 600 !important;
+  padding: 10px !important;
 }
 
 .cursor
@@ -44,7 +44,9 @@
 }
 
 
-
+.App-link {
+  color: #61dafb;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

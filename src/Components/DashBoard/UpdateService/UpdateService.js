@@ -24,8 +24,8 @@ const UpdateService = () => {
     return (
         <section className="container custom-height mt-4 ">
             <main className=" bg-white p-5 rounded-3 shadow-lg">
-                <h3 className="text-info"> Edit Service </h3>
-                <Form className="mt-3 p-3 border border-info" onSubmit={handleSubmit(onSubmit)} >
+                <h3 className="custom-primary"> Edit Service </h3>
+                <Form className="mt-3 p-3 border border-muted" onSubmit={handleSubmit(onSubmit)} >
                     <Row className="g-3 p-3">
                         <h4 className="text-info">{serviceId}</h4>
                         <Col sm={12} md={6} >

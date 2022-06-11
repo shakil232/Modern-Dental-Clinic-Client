@@ -1,14 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Error from '../../images/error.png'
+// icons 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {  faLeftLong } from '@fortawesome/free-solid-svg-icons';
+
 
 const NotFound = () => {
     return (
-        <section className="container mt-5">
+        <section className="mt-3">
+            <img className="img-fluid" src={Error} alt="error" />
             <div className="text-center">
-                <h2 style={{fontWeight:'800'}} className="custom-dark">404</h2>
-                <h4 className="text-danger">Sorry!! NotFound..</h4>
-
-                <Link to="/home" className="btn btn-info">Home</Link>
+                <Link to="/home" className="p-3 btn btn-main rounded-3 border-0 mt-4">
+                    <FontAwesomeIcon className="me-1" icon={faLeftLong} />   Back to Home
+                </Link>
             </div>
         </section>
     );

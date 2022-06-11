@@ -7,10 +7,12 @@ import Testimonial from '../Testimonial/Testimonial';
 import Connected from '../Connected/Connected';
 import Footer from '../../Shared/Footer/Footer'
 import Header from '../Headers/Header/Header';
+import NavBar from '../../Shared/NavBar/NabBar';
 
 const Home = () => {
   return (
-    <>
+    <div className="py-1">
+    <NavBar />
       <Header />
       <Services />
       <AboutUs />
@@ -19,7 +21,7 @@ const Home = () => {
       <Doctors />
       <Connected />
       <Footer />
-    </>
+    </div>
   );
 };
 

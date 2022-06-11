@@ -21,7 +21,7 @@ const MakeAdmin = () => {
             <main className=" bg-white p-5  rounded-3 shadow-lg">
                 <h2 className="custom-primary">Make Admin</h2>
 
-                <Form className="mt-3 p-3 border border-info" onSubmit={handleSubmit(onSubmit)} >
+                <Form className="mt-3 p-3 border border-muted" onSubmit={handleSubmit(onSubmit)} >
                     <Row className="g-3 p-3">
                         <Col className="mx-auto" sm={12} md={6} >
                          

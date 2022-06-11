@@ -14,8 +14,8 @@ const RecentAppointment = () => {
     return (
         <main className="container">
             <div style={{ height: '600px' }} className="d-flex align-content-center row g-4">
-                <div className="col-md-5">
-                    <h2 className="custom-dark "> Recent Appointment-{selectDate.toDateString()} </h2>
+                <div className="col-md-5 px-5">
+                    <h4 className="custom-primary "> Today Appointment-{selectDate.toDateString()} </h4>
                     
                     <div >
                         <Calendar className="border-0 shadow-lg "
@@ -24,7 +24,7 @@ const RecentAppointment = () => {
                     </div>
                 </div>
 
-                <div className="col-md-7  m-auto">
+                <div className="col-md-7 px-5">
                     <Table striped hover >
                         <thead>
                             <tr>

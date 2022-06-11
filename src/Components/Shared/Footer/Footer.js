@@ -3,6 +3,7 @@ import './Footer.css'
 import FooterCol from '../FooterCol/FooterCol';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faInstagram, faGooglePlusG } from '@fortawesome/free-brands-svg-icons'
+import { Button } from 'react-bootstrap';
 
 const Footer = () => {
     const noNamed = [
@@ -52,7 +53,7 @@ const Footer = () => {
                                 </ul>
                                 <div className="mt-5">
                                     <h6>Call now</h6>
-                                    <button className="btn btn-info">+2025550295</button>
+                                    <Button className="btn-main border-0 rounded-3">+2025550295</Button>
                                 </div>
                             </FooterCol>
                         </div>

@@ -22,8 +22,8 @@ const AddService = () => {
     return (
         <section className="container custom-height mt-4 ">
             <main className=" bg-white p-5 rounded-3 shadow-lg">
-                <h3 className="text-info">Add Services </h3>
-                <Form  className="mt-3 p-3 border border-info" onSubmit={handleSubmit(onSubmit)} >
+                <h3 className="custom-primary">Add Services </h3>
+                <Form  className="mt-3 p-3 border border-muted" onSubmit={handleSubmit(onSubmit)} >
                     <Row className="g-3 p-3">
                         
                         <Col sm={12} md={6} >
@@ -54,7 +54,7 @@ const AddService = () => {
 
                     <div className="mt-4 text-center">
                         <Button variant="outline-info" type="submit" size="lg">
-                            Added
+                            Add Service
                         </Button>
                     </div>
 

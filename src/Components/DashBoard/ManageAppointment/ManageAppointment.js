@@ -23,12 +23,12 @@ const ManageAppointment = () => {
     return (
         <section className="container mt-4 ">
             <main className=" bg-white p-4 h-auto rounded-3 shadow-lg">
-                <h3 className="text-info">Manage Appointments</h3>
+                <h3 className="custom-primary">Manage Appointments</h3>
                 <div className="mt-4">
 
                     <Table striped hover>
                         <thead>
-                            <tr>
+                            <tr className="custom-primary">
                                 <th>Name</th>
                                 <th>Price</th>
                                 <th>Space</th>
@@ -44,7 +44,7 @@ const ManageAppointment = () => {
                                 <td>8:30-10.00 pm</td>
                                 <td>
                                     <Button onClick={() => handelEdit('nameShakil')}  className="text-black" variant="outline-warning" size="sm">
-                                        <FontAwesomeIcon  icon={faPenToSquare} /> Edit
+                                        <FontAwesomeIcon icon={faPenToSquare} /> Edit
                                   
                                     </Button>
                                     

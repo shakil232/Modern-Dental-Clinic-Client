@@ -1,6 +1,7 @@
 import React from 'react';
 import './MakeAppointment.css';
 import Doctor from '../../../images/doctor.png'
+import { Button } from 'react-bootstrap';
 
 
 
@@ -21,7 +22,8 @@ const MakeAppointment = () => {
                         <p className="mt-2 text-white text-justify">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem explicabo amet enim architecto debitis sapiente ad molestiae iusto. Consequatur, libero.
                         </p>
-                        <button className="btn btn-info border-0 rounded-3 mb-2">Learn More</button>
+                        
+                        <Button className="btn-main border-0 rounded-3 mb-2">Learn More</Button>
                     </div>
                 </div>
             </main>

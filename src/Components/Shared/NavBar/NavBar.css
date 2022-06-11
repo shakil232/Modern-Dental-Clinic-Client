@@ -27,7 +27,7 @@
 
 /* dropdown  */
 .dropdown-menu[data-bs-popper] {
-    left: -9px !important;
+    left: -91px !important;
 }
 .dropdown-menu {
     min-width: 10rem !important;

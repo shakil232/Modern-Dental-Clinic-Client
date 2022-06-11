@@ -10,21 +10,3 @@
     transition: 0.8s !important;
 }
 
-/* dropdown  */
-.dropdown-menu[data-bs-popper] {
-    left: -73px !important;
-}
-.dropdown-menu {
-    min-width: 10rem !important;
-    padding: 0.5rem 5px !important;
-    font-size: 12px !important;
-    color: #212529;
-    background-color: transparent!important ;
-    border-radius: 0.35rem !important;
-    border: 0px !important;
-}
-.btn-logout:hover {
-    background-color: red !important;
-    color: #FFFFFF !important;
-    transition: ease-in-out 1s;
-}
