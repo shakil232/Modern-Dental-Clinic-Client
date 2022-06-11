@@ -1,24 +1,29 @@
 import React, { useState } from 'react';
-import { Form,FloatingLabel } from 'react-bootstrap';
+import { Form, FloatingLabel, Button, Row, Col } from 'react-bootstrap';
 import NavBar from '../Shared/NavBar/NabBar'
 import useAuth from '../../hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './Login.css'
 // icons 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faGoogle, faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faFacebook, faGooglePlus, faGithub } from '@fortawesome/free-brands-svg-icons'
 
 
-
+// login-function 
 const Login = () => {
+
+    // all-state 
     const [signNewUser, setSignNewUser] = useState({
         name: '',
         email: '',
         password: '',
+        success: true,
+        error: ''
     });
+
     const [newUser, setNewUser] = useState(false);
-    const [pass, setPass] = useState(false);
-    const [email, setEmail] = useState(false);
+    const [passCheck, setPassCheck] = useState(false);
+    const [emailCheck, setEmailCheck] = useState(false);
 
     // firebaseAUth 
     const {
@@ -90,12 +95,13 @@ const Login = () => {
     };
 
 
-    {/* fbSignIn  */ }
-    const handelFbSignIn = () => {
+    // fbSignIn  
+    const handelFacebookSignIn = () => {
         facebookLogin()
             .then(res => {
                 setUser(res);
                 navigate(from, { replace: true })
+                
             })
             .catch(err => {
                 setUser(err)
@@ -104,19 +110,20 @@ const Login = () => {
 
     };
 
-    {/* googleSignIn  */ }
+    // googleSignIn
     const handelGoogleSignIn = () => {
         googleLogin()
             .then(res => {
                 setUser(res);
                 navigate(from, { replace: true })
+                 alert('logged in')
             })
             .catch(err => {
                 setUser(err)
             })
     };
 
-    {/* githubSignIn  */ }
+    // githubSignIn
     const handelGithubSignIn = () => {
         githubLogin()
             .then(res => {
@@ -133,103 +140,111 @@ const Login = () => {
     return (
         <section>
             <NavBar />
-            <main className="container mt-5 mb-5">
-                {/* success & error handel  */}
-                <div className="text-center">
-                    <h3 className="text-danger">{user.err}</h3>
-                    {
-                        user.success && <h6 className="text-success">User {newUser ? "Created" : "LoggedIn"} Successfully..</h6>
-                    }
-                </div>
-                <div className="row mt-3">
-                    <div className="col-md-6 m-auto shadow-lg rounded-3 ">
-                        <div className="p-5">
-                            {
-                                newUser ?
+        
+            <main className="container my-5">
 
-                                    // register-Section 
-                                    <Form className="" onSubmit={handelSubmit} >
-                                        <div>
-                                            <h4 className="custom-dark">Create an account</h4>
-                                        </div>
+                <Row>
+                    <Col className="mx-auto" md={6} >
 
-                                        <FloatingLabel className="mt-4 mb-2" controlId="floatingInput" label="Your Name" >
-                                            <Form.Control onBlur={handelBlur} type="name" name="name" placeholder="name" />
-                                        </FloatingLabel>
+                        {newUser ?
 
-                                        <FloatingLabel className="mb-2" controlId="floatingInput" label="Email" >
-                                            <Form.Control onBlur={handelBlur} onClick={() => setEmail(!email)} type="email" name="email" placeholder="email" />
-                                            
-                                            {email && <span style={{fontWeight:"600"}} className="text-danger mt-2 mb-1">Please Give a Valid Email.</span>}
-                                        </FloatingLabel>
+                            // Register
+                            < Form onSubmit={handelSubmit} className="p-3 shadow ">
+                                <h5 className="text-muted">Create an account </h5>
 
-                                        <FloatingLabel className="mb-2" controlId="floatingInput" label="Password" >
-                                            <Form.Control onBlur={handelBlur} onClick={() => setPass(!pass)} type="password" name="password" placeholder="password"  />
+                                {/* inputs  */}
+                                <FloatingLabel className="mt-3" controlId="floatingInput" label="Name" >
+                                    <Form.Control onBlur={handelBlur} name="name" type="name" placeholder="Name" />
+                                </FloatingLabel>
 
-                                            {pass && <span style={{fontWeight:"600"}}  className="text-danger mt-2 mb-1">Password Atleast 6,Digit With 1 Number</span>}
-                                        </FloatingLabel>
+                                <FloatingLabel className="mt-3" controlId="floatingInput" label="Email address" >
+                                    <Form.Control onBlur={handelBlur} onClick={() => setEmailCheck(!emailCheck)} name="email" type="email" placeholder="Email address" />
+                                </FloatingLabel>
+                                {emailCheck && <span style={{ fontWeight: "600" }} className="text-danger my-2">Please Give a Valid Email.</span>}
 
+                                <FloatingLabel className="mt-3" controlId="floatingInput" label="Password" >
+                                    <Form.Control onBlur={handelBlur} onClick={() => setPassCheck(!passCheck)} name="password" type="password" placeholder="Password" />
+                                </FloatingLabel>
+                                {passCheck && <span style={{ fontWeight: "600" }} className="text-danger mt-2 mb-1">password Atleast six characters and with One digit</span>}
 
-                                        <div className="text-center mt-3">
-                                            <input className="form-control btn btn-info border-0 rounded-3 " type="submit" value="Create Account" />
-                                        </div>
+                                <Button type="submit" className="form-control btn-success border-0 rounded-3 text-white mt-3" >Create an account </Button>
 
-                                        <div className="text-center mt-4">
-                                            <h6 style={{ fontWeight: '90O' }} className="custom-dark">Already have an account?
-                                            <span onClick={() => setNewUser(false)} className="text-success ms-1 text-decoration-underline cursor">Login</span>
-                                            </h6>
-                                        </div>
-                                    </Form>
+                                <div className="d-flex justify-content-center mt-3">
+                                    <p>
+                                        <small style={{ fontWeight: '700' }} className="text-secondary" >Already have an account ?</small>
+                                        <small onClick={() => setNewUser(false)} className="cursor  ms-2"> Login </small>
+                                    </p>
 
-                                    // login-section 
-                                    :
-                                    <Form onSubmit={handelSubmit} >
-                                        <div>
-                                            <h4 className="custom-dark">Login</h4>
-                                        </div>
-                                    
-                                        <FloatingLabel className="mt-4 mb-2" controlId="floatingInput" label="Email" >
-                                            <Form.Control onBlur={handelBlur} type="email" name="email" placeholder="email"  />
-                                        </FloatingLabel>
+                                </div>
+                            </Form> :
 
-                                        <FloatingLabel controlId="floatingInput" label="Password" >
-                                            <Form.Control onBlur={handelBlur} type="password" name="password" placeholder="password" />
-                                        </FloatingLabel>
+                            // login
+                            <Form onSubmit={handelSubmit} className="p-3 shadow">
+                                <h5 className="text-muted">Login</h5>
 
-                                        <div className="text-center mt-3">
-                                            <input className="form-control btn btn-info border-0 rounded-3 " type="submit" value="Login" />
-                                        </div>
-                                        <div className="text-center mt-4">
-                                            <h6 style={{ fontWeight: '9OO' }} className="custom-dark">Don't have an account?
-                                        <span onClick={() => setNewUser(true)} className="text-success ms-1 text-decoration-underline cursor">Create an account</span>
-                                            </h6>
-                                        </div>
-                                    </Form>
+                                {/* inputs  */}
+                                <FloatingLabel className="mt-3" controlId="floatingInput" label="Email address" >
+                                    <Form.Control onBlur={handelBlur} name="email" type="email" placeholder="Email address" />
+                                </FloatingLabel>
 
-                            }
-                        </div>
+                                <FloatingLabel className="mt-3" controlId="floatingInput" label="Password" >
+                                    <Form.Control onBlur={handelBlur} name="password" type="password" placeholder="Password" />
+                                </FloatingLabel>
+
+                                <Button type="submit" className="form-control btn-success border-0 rounded-3 text-white mt-3" >Login</Button>
+
+                                <div className="d-flex justify-content-center mt-3">
+                                    <p>
+                                        <small style={{ fontWeight: '700' }} className="text-secondary" >Don't have an account ?</small>
+                                        <small onClick={() => setNewUser(true)} className="cursor ms-2"> Create an account </small>
+                                    </p>
+                                </div>
+                            </Form>
+                        }
+
+                    </Col>
+                </Row>
+
+                {/* Continue-Section  */}
+                <div className="m-auto">
+                    <h3 className="text-center text-info my-3">Or</h3>
+
+                    {/* googleLogin */}
+                    <div className="d-flex justify-content-center align-content-center">
+                        <p onClick={handelGoogleSignIn}
+                            className="shadow text-muted rounded-3 p-1 cursor"
+                            style={{ width: "260px" }}
+                        >
+                            <FontAwesomeIcon className="me-3 mx-3 text-danger fs-3" icon={faGooglePlus} />
+                            Continue with Google
+                        </p>
                     </div>
-                </div>
 
-                {/* Continue-section  */}
-                <div className="m-auto mt-4">
-                    <div style={{ fontWeight: "600" }} className=" text-center border-bottom border-secondary">
-                        <h3 className="custom-primary"  >Or</h3>
-                        <h5 className="custom-dark ">Continue with </h5>
+                    {/* fbLogin */}
+                    <div className="d-flex justify-content-center align-items-center">
+                        <p onClick={handelFacebookSignIn}
+                            className="shadow text-muted rounded-3 p-1 cursor"
+                            style={{ width: "260px" }}
+                        >
+                            <FontAwesomeIcon className="me-3 mx-3 text-danger fs-3" icon={faFacebook} />
+                            Continue with Facebook
+                        </p>
                     </div>
-                    {/* icons  */}
-                    <div className="d-flex justify-content-center align-content-center fs-3 mb-3 p-3">
-                        {/* fbSignIn  */}
-                        <FontAwesomeIcon onClick={handelFbSignIn} className="icons" icon={faFacebook} />
-                        {/* googleSignIn  */}
-                        <FontAwesomeIcon onClick={handelGoogleSignIn} className="ms-3 icons" icon={faGoogle} />
-                        {/* githubSignIn  */}
-                        <FontAwesomeIcon onClick={handelGithubSignIn} className="ms-3 icons" icon={faGithub} />
-                    </div>
-                </div>
 
+                    {/* githubLogin */}
+                    <div className="d-flex justify-content-center align-content-center">
+                        <p onClick={handelGithubSignIn}
+                            className="shadow text-muted rounded-3 p-1 cursor"
+                            style={{ width: "260px" }}
+                        >
+                            <FontAwesomeIcon className="me-3 mx-3 text-danger fs-3" icon={faGithub} />
+                            Continue with Github
+                        </p>
+                    </div>
+
+                </div>
             </main>
-        </section>
+        </section >
     );
 };
 

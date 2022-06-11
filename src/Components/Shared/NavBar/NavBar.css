@@ -1,4 +1,15 @@
 
+.navbar-brand 
+{
+    color: #090916!important;
+    font-weight: 800 !important; 
+}
+.navbar-brand:hover
+{
+    color: orangered !important;
+    transition: ease-in-out 1s;
+}
+
 .navbar-toggler-icon{
     background-color: #1ED2D4 !important;
 }
@@ -7,4 +18,28 @@
     color:#3A4256 !important;
     font-size: 16px !important;
     font-weight: 600 !important;
+}
+.nav-link:hover
+{
+    color: orangered !important;
+    transition: ease-in-out 1s;
+}
+
+/* dropdown  */
+.dropdown-menu[data-bs-popper] {
+    left: -9px !important;
+}
+.dropdown-menu {
+    min-width: 10rem !important;
+    padding: 0.5rem 3px !important;
+    font-size: 12px !important;
+    color: #212529;
+    background-color: #EEF3FA!important ;
+    border-radius: 0.35rem !important;
+    border: 0px !important;
+}
+.btn-logout:hover {
+    background-color: red !important;
+    color: #FFFFFF !important;
+    transition: ease-in-out 1s;
 }

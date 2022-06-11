@@ -14,7 +14,7 @@
 .custom-primary{
   color: #1ED2D4;
 }
-.btn-info{
+.btn-custom{
   font-weight: 600 !important;
   padding: 10px !important;
   border-radius: 5px !important;
@@ -27,6 +27,20 @@
 .custom-height
 {
     height: 507px !important;
+}
+
+/* custom-css    */
+.btn-main
+{
+  background-color: #1ED2D4 !important;
+  color: white !important;
+}
+
+.cursor
+{  
+    font-weight: 700;
+    color: #1ED2D4;
+    cursor: pointer;
 }
 
 
