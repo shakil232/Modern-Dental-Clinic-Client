@@ -24,7 +24,8 @@ const AppointmentFrom = ({ booking, date, lgShow, setLgShow }) => {
             phone: data.phone,
             price: booking.price,
             date: data,
-            time: booking.time 
+            time: booking.time,
+            action: 'pending'
         }
         console.log('presentInfo', presentInfo)
     };

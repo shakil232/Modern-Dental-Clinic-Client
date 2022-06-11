@@ -21,6 +21,13 @@
   background: linear-gradient(to right, #18D2B5 0%, #10CFE6 100%) !important;
   color: white !important;
 }
+.dashboard-bg{
+  background-color: lightcyan;
+}
+.custom-height
+{
+    height: 507px !important;
+}
 
 
 

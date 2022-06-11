@@ -13,7 +13,7 @@ const NabBar = () => {
                     <Nav className="ms-auto">
                         <Nav.Link as={Link} to="/home" className="me-3" >Home</Nav.Link>
                         <Nav.Link as={Link} to="/appointment" className="me-3" >Services</Nav.Link>
-                        <Nav.Link as={Link} to="/review" className="me-3" >Review</Nav.Link>
+                        <Nav.Link as={Link} to="/review" className="me-3" >Booking-Review</Nav.Link>
                         <Nav.Link as={Link} to="/dashboard" className="me-3" >Dashboard</Nav.Link>
                         <Link to="/login" className="btn btn-info border-0 rounded-3">login</Link>
                     </Nav>

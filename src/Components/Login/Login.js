@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form } from 'react-bootstrap';
+import { Form,FloatingLabel } from 'react-bootstrap';
 import NavBar from '../Shared/NavBar/NabBar'
 import useAuth from '../../hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -11,12 +11,19 @@ import { faFacebook, faGoogle, faGithub } from '@fortawesome/free-brands-svg-ico
 
 
 const Login = () => {
+    const [signNewUser, setSignNewUser] = useState({
+        name: '',
+        email: '',
+        password: '',
+    });
     const [newUser, setNewUser] = useState(false);
+    const [pass, setPass] = useState(false);
+    const [email, setEmail] = useState(false);
 
     // firebaseAUth 
-    const { 
+    const {
         user,
-        setUser, 
+        setUser,
         googleLogin,
         facebookLogin,
         githubLogin,
@@ -27,8 +34,8 @@ const Login = () => {
     // user-Redirect 
     let navigate = useNavigate();
     let location = useLocation();
-    let  from  = location.state?.from?.pathname || "/" ;
- 
+    let from = location.state?.from?.pathname || "/";
+
     // formValidation
     const handelBlur = e => {
         let isFieldValid;
@@ -45,9 +52,9 @@ const Login = () => {
             isFieldValid = passLength && passValid;
         }
         if (isFieldValid) {
-            const newUserInfo = { ...user };
+            const newUserInfo = { ...signNewUser };
             newUserInfo[e.target.name] = e.target.value;
-            setUser(newUserInfo)
+            setSignNewUser(newUserInfo)
         }
 
     };
@@ -55,70 +62,70 @@ const Login = () => {
     // fromSubmit 
     const handelSubmit = e => {
         e.preventDefault();
-        
+
         // CreateUserWithEmailAndPassword 
-        if(newUser && user.name && user.email && user.password){
-            createWithEmailAndPassword(user.name, user.email, user.password)
-            .then(res =>{
-                setUser(res);
-                navigate(from, {replace:true});
-            })
-            .catch(err =>{
-                setUser(err)
-            })
-        
+        if (newUser && signNewUser.name && signNewUser.email && signNewUser.password) {
+            createWithEmailAndPassword(signNewUser.name, signNewUser.email, signNewUser.password)
+                .then(res => {
+                    setUser(res);
+                    navigate(from, { replace: true });
+                })
+                .catch(err => {
+                    setUser(err)
+                })
+
         };
 
         // signInWithEmailAndPassword 
-        if(!newUser && user.email && user.password){
-            signWithEmailAndPassword(user.email, user.password)
-            .then(res =>{
-                setUser(res);
-                navigate(from, {replace:true})
-            })
-            .catch(err =>{
-                setUser(err)
-            })
+        if (!newUser && signNewUser.email && signNewUser.password) {
+            signWithEmailAndPassword(signNewUser.email, signNewUser.password)
+                .then(res => {
+                    setUser(res);
+                    navigate(from, { replace: true })
+                })
+                .catch(err => {
+                    setUser(err)
+                })
         }
     };
 
 
     {/* fbSignIn  */ }
-    const handelFbSignIn = () => { 
+    const handelFbSignIn = () => {
         facebookLogin()
-        .then(res =>{
-            setUser(res);
-            navigate(from, {replace:true})
-        })
-        .catch(err =>{
-            setUser(err)
-        })
+            .then(res => {
+                setUser(res);
+                navigate(from, { replace: true })
+            })
+            .catch(err => {
+                setUser(err)
+            })
 
-        
+
     };
 
     {/* googleSignIn  */ }
     const handelGoogleSignIn = () => {
         googleLogin()
-        .then(res =>{
-            setUser(res);
-            navigate(from, {replace:true})
-        })
-        .catch(err =>{
-            setUser(err)
-        })
+            .then(res => {
+                setUser(res);
+                navigate(from, { replace: true })
+            })
+            .catch(err => {
+                setUser(err)
+            })
     };
 
     {/* githubSignIn  */ }
     const handelGithubSignIn = () => {
         githubLogin()
-        .then(res =>{
-            setUser(res);
-            navigate(from, {replace:true})
-        })
-        .catch(err =>{
-            setUser(err)
-        })
+            .then(res => {
+                setUser(res);
+                navigate(from, { replace: true })
+            })
+            .catch(err => {
+                setUser(err)
+            })
     };
 
 
@@ -129,10 +136,10 @@ const Login = () => {
             <main className="container mt-5 mb-5">
                 {/* success & error handel  */}
                 <div className="text-center">
-                   <h3 className="text-danger">{user.err}</h3> 
-                  {
-                      user.success && <h6 className="text-success">User {newUser ? "Created" : "LoggedIn"} Successfully..</h6>
-                  }
+                    <h3 className="text-danger">{user.err}</h3>
+                    {
+                        user.success && <h6 className="text-success">User {newUser ? "Created" : "LoggedIn"} Successfully..</h6>
+                    }
                 </div>
                 <div className="row mt-3">
                     <div className="col-md-6 m-auto shadow-lg rounded-3 ">
@@ -145,22 +152,28 @@ const Login = () => {
                                         <div>
                                             <h4 className="custom-dark">Create an account</h4>
                                         </div>
-                                        <Form.Floating className="mt-4 mb-2">
-                                            <Form.Control onBlur={handelBlur} id="floatingInputCustom" type="text" placeholder="Name" />
-                                            <label htmlFor="floatingInputCustom">Name</label>
-                                        </Form.Floating>
-                                        <Form.Floating className="mb-2">
-                                            <Form.Control onBlur={handelBlur} id="floatingInputCustom" type="email" placeholder="name@example.com" />
-                                            <label htmlFor="floatingInputCustom">Email address</label>
-                                        </Form.Floating>
-                                        <Form.Floating>
-                                            <Form.Control onBlur={handelBlur} id="floatingPasswordCustom" type="password" placeholder="Password" />
-                                            <label htmlFor="floatingPasswordCustom">Password</label>
-                                        </Form.Floating>
+
+                                        <FloatingLabel className="mt-4 mb-2" controlId="floatingInput" label="Your Name" >
+                                            <Form.Control onBlur={handelBlur} type="name" name="name" placeholder="name" />
+                                        </FloatingLabel>
+
+                                        <FloatingLabel className="mb-2" controlId="floatingInput" label="Email" >
+                                            <Form.Control onBlur={handelBlur} onClick={() => setEmail(!email)} type="email" name="email" placeholder="email" />
+                                            
+                                            {email && <span style={{fontWeight:"600"}} className="text-danger mt-2 mb-1">Please Give a Valid Email.</span>}
+                                        </FloatingLabel>
+
+                                        <FloatingLabel className="mb-2" controlId="floatingInput" label="Password" >
+                                            <Form.Control onBlur={handelBlur} onClick={() => setPass(!pass)} type="password" name="password" placeholder="password"  />
+
+                                            {pass && <span style={{fontWeight:"600"}}  className="text-danger mt-2 mb-1">Password Atleast 6,Digit With 1 Number</span>}
+                                        </FloatingLabel>
+
 
                                         <div className="text-center mt-3">
                                             <input className="form-control btn btn-info border-0 rounded-3 " type="submit" value="Create Account" />
                                         </div>
+
                                         <div className="text-center mt-4">
                                             <h6 style={{ fontWeight: '90O' }} className="custom-dark">Already have an account?
                                             <span onClick={() => setNewUser(false)} className="text-success ms-1 text-decoration-underline cursor">Login</span>
@@ -174,14 +187,14 @@ const Login = () => {
                                         <div>
                                             <h4 className="custom-dark">Login</h4>
                                         </div>
-                                        <Form.Floating className="mt-4 mb-2">
-                                            <Form.Control onBlur={handelBlur} id="floatingInputCustom" type="email" placeholder="name@example.com" />
-                                            <label htmlFor="floatingInputCustom">Email address</label>
-                                        </Form.Floating>
-                                        <Form.Floating>
-                                            <Form.Control onBlur={handelBlur} id="floatingPasswordCustom" type="password" placeholder="Password" />
-                                            <label htmlFor="floatingPasswordCustom">Password</label>
-                                        </Form.Floating>
+                                    
+                                        <FloatingLabel className="mt-4 mb-2" controlId="floatingInput" label="Email" >
+                                            <Form.Control onBlur={handelBlur} type="email" name="email" placeholder="email"  />
+                                        </FloatingLabel>
+
+                                        <FloatingLabel controlId="floatingInput" label="Password" >
+                                            <Form.Control onBlur={handelBlur} type="password" name="password" placeholder="password" />
+                                        </FloatingLabel>
 
                                         <div className="text-center mt-3">
                                             <input className="form-control btn btn-info border-0 rounded-3 " type="submit" value="Login" />
