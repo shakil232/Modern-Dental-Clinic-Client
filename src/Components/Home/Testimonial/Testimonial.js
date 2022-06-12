@@ -2,6 +2,7 @@ import React from 'react';
 import Wilson from '../../../images/Wilson Harry.png'
 import TestimonialCard from '../TestimonialCard/TestimonialCard';
 
+
 const testimonialInfo = [
     {
         comments: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae explicabo consectetur ut aut. Quasi odio quia suscipit esse ducimus id et, exercitationem perferendis sequi dolore. ',
@@ -31,11 +32,14 @@ const Testimonial = () => {
             </div>
             <main className="mt-5 d-flex align-content-center justify-content-center ">
                 <div className=" row ">
+
                     {
                         testimonialInfo.map(testimonial =>
                             <TestimonialCard testimonial={testimonial}></TestimonialCard>
+
                         )
                     }
+
                 </div>
             </main>
         </section>

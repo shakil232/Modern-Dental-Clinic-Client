@@ -1,13 +1,15 @@
-
 import React from 'react';
 import { Card } from 'react-bootstrap';
 
+
+
 const TestimonialCard = ({ testimonial }) => {
     const { comments, name, address, image } = testimonial;
-    return (
-        <div className="col-md-4 g-4">
-            <Card className=" m-auto shadow-lg" style={{ width: '19rem', height:'19rem' }}>
 
+    return (
+
+        <div className="col-md-4 g-4">
+            <Card className=" m-auto shadow-lg" style={{ width: '19rem', height: '19rem' }}>
                 <Card.Body >
                     <Card.Text className="text-muted text-justify">
                         {comments}

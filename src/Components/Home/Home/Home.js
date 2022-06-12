@@ -18,7 +18,7 @@ const Home = () => {
   return (
 
     isLoading ?
-      <div className="d-flex align-content-center justify-content-center p-5">
+      <div className="d-flex align-content-center justify-content-center mt-5 p-5">
         < FadeLoader color={"#36D7B7"} loading={isLoading}
           width={8}
           height={18}
@@ -27,7 +27,7 @@ const Home = () => {
         />
       </div >
       :
-      <div className="py-1">
+      <div>
         <NavBar />
         <Header />
         <Services />

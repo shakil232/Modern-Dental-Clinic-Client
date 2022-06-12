@@ -9,12 +9,15 @@ import AddService from '../AddService/AddService';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import RecentAppointment from '../RecentAppointment/RecentAppointment';
 import UpdateService from '../UpdateService/UpdateService';
+import useAuth from '../../../hooks/useAuth';
+import toast, { Toaster } from 'react-hot-toast';
+import FadeLoader from "react-spinners/FadeLoader";
 // icons 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faXmark,
     faList,
-    faHouseUser,
+    faHouseMedicalCircleCheck,
     faClipboardList,
     faListCheck,
     faUserPlus,
@@ -22,9 +25,8 @@ import {
     faGear,
     faLeftLong
 } from '@fortawesome/free-solid-svg-icons';
-import useAuth from '../../../hooks/useAuth';
-import toast, { Toaster } from 'react-hot-toast';
-import FadeLoader from "react-spinners/FadeLoader";
+
+
 
 
 const DashBoard = () => {
@@ -69,7 +71,7 @@ const DashBoard = () => {
                     <Offcanvas.Header >
                         <Link className="text-decoration-none custom-primary" to="/">
                             <Offcanvas.Title>
-                                <FontAwesomeIcon className="custom-dark me-1" icon={faHouseUser} /> Dental-Clinic
+                                <FontAwesomeIcon className="custom-dark  fs-3" icon={faHouseMedicalCircleCheck} /> Dental-Clinic
                             </Offcanvas.Title>
                         </Link>
                     </Offcanvas.Header>
@@ -78,27 +80,27 @@ const DashBoard = () => {
 
                             <li className="">
                                 <Link style={{ fontWeight: '600' }} className="text-decoration-none custom-dark" to="appointments" >
-                                    <FontAwesomeIcon className="text-primary me-2 " icon={faClipboardList} /> All Appointment
+                                    <FontAwesomeIcon className="text-primary me-2 fs-5" icon={faClipboardList} /> All Appointment
                                 </Link>
                             </li>
                             <li className="mt-3">
                                 <Link style={{ fontWeight: '600' }} className="text-decoration-none custom-dark" to="recentAppointments" >
-                                    <FontAwesomeIcon className="text-primary me-2 " icon={faListCheck} /> Recent Appointment
+                                    <FontAwesomeIcon className="text-primary me-2 fs-5" icon={faListCheck} /> Recent Appointment
                                 </Link>
                             </li>
                             <li className="mt-3">
                                 <Link style={{ fontWeight: '600' }} className="text-decoration-none custom-dark" to="manageService" >
-                                    <FontAwesomeIcon className="text-primary me-2 " icon={faGear} /> Manage Service
+                                    <FontAwesomeIcon className="text-primary me-2 fs-5" icon={faGear} /> Manage Service
                                 </Link>
                             </li>
                             <li className="mt-3">
                                 <Link style={{ fontWeight: '600' }} className="text-decoration-none custom-dark" to="addService" >
-                                    <FontAwesomeIcon className="text-primary me-2 " icon={faCirclePlus} /> Add Service
+                                    <FontAwesomeIcon className="text-primary me-2 fs-5" icon={faCirclePlus} /> Add Service
                                 </Link>
                             </li>
                             <li className="mt-3">
                                 <Link style={{ fontWeight: '600' }} className="text-decoration-none custom-dark" to="makeAdmin" >
-                                    <FontAwesomeIcon className="text-primary me-2 " icon={faUserPlus} />  Make Admin
+                                    <FontAwesomeIcon className="text-primary me-2 fs-5" icon={faUserPlus} />  Make Admin
                                 </Link>
                             </li>
 
@@ -123,7 +125,7 @@ const DashBoard = () => {
                 </Offcanvas>
 
                 {/* sidebar-top-nav  */}
-                <div className="py-2"
+                <div
                     style={show ? { marginLeft: margin.marginLeft, transition: margin.transition } : { marginLeft: width.marginLeft, width: width.width, transition: width.transition }} >
 
                     <Navbar collapseOnSelect bg="light" expand="lg" variant="light">
@@ -149,6 +151,7 @@ const DashBoard = () => {
                             {
                                 user?.email &&
                                 <NavDropdown
+                                   
                                     title={
                                         user?.photo ?
                                             <Image

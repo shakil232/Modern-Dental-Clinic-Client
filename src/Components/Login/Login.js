@@ -3,10 +3,11 @@ import { Form, FloatingLabel, Button, Row, Col, Container } from 'react-bootstra
 import NavBar from '../Shared/NavBar/NabBar'
 import useAuth from '../../hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 // icons 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGooglePlus, faGithub } from '@fortawesome/free-brands-svg-icons'
-import toast, { Toaster } from 'react-hot-toast';
+
 
 
 // login-function 

@@ -4,7 +4,12 @@ import { Link } from 'react-router-dom';
 import './NavBar.css';
 import useAuth from '../../../hooks/useAuth'
 import toast, { Toaster } from 'react-hot-toast';
-import Logo from '../../../images/main-logo.png'
+import Logo from '../../../images/main-logo.png';
+// icons 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTooth } from '@fortawesome/free-solid-svg-icons'
+
+
 
 const NabBar = () => {
     const { user, logOut } = useAuth();
@@ -21,13 +26,11 @@ const NabBar = () => {
         <Navbar collapseOnSelect expand="lg" variant="dark" bg="dark" sticky="top" >
             <Toaster />
             <Container>
-                <Navbar.Brand as={Link} to="/" className="">
-                    <Image
-                        width="100"
-                        height="35"
-                        src={Logo}
-                        alt="logo" />
+                <Navbar.Brand style={{ marginTop: '-10px' }} className="d-flex justify-content-center align-content-center  " as={Link} to="/" >
+                    <FontAwesomeIcon className=" custom-primary fs-2" icon={faTooth} />
+                    <Image style={{ marginLeft: '-7px' }} width="100" height="35" src={Logo} alt="logo" />
                 </Navbar.Brand>
+
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="ms-auto">
@@ -39,6 +42,7 @@ const NabBar = () => {
                         {
                             user?.email ?
                                 <NavDropdown
+                                    style={{ marginTop: '-6px' }}
                                     title={
                                         user?.photo ?
                                             <Image
@@ -72,24 +76,6 @@ const NabBar = () => {
             </Container>
         </Navbar>
 
-
-
-
-        // <Navbar collapseOnSelect expand="lg"  variant="dark">
-        //     <Container>
-        //         <Navbar.Brand className="custom-primary">Modern-Dental</Navbar.Brand>
-        //         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        //         <Navbar.Collapse id="responsive-navbar-nav">
-        //             <Nav className="ms-auto">
-        //                 <Nav.Link as={Link} to="/home" className="me-3" >Home</Nav.Link>
-        //                 <Nav.Link as={Link} to="/appointment" className="me-3" >Services</Nav.Link>
-        //                 <Nav.Link as={Link} to="/review" className="me-3" >Booking-Review</Nav.Link>
-        //                 <Nav.Link as={Link} to="/dashboard" className="me-3" >Dashboard</Nav.Link>
-        //                 <Link to="/login" className="btn btn-info border-0 rounded-3">login</Link>
-        //             </Nav>
-        //         </Navbar.Collapse>
-        //     </Container>
-        // </Navbar>
     );
 };
 

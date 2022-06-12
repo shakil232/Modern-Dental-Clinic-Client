@@ -1,9 +1,11 @@
 import React from 'react';
 // images 
-import Smith from '../../../images/doctor-1.png'
-import Anderson from '../../../images/doctor-2.png'
-import Morgan from '../../../images/doctor-3.png'
+import Smith from '../../../images/doctor-1.png';
+import Anderson from '../../../images/doctor-2.png';
+import Morgan from '../../../images/doctor-3.png';
 import DoctorCard from '../DoctorCard/DoctorCard';
+
+
 
 const doctorInfo = [
     {
@@ -24,8 +26,9 @@ const doctorInfo = [
 ]
 
 const Doctors = () => {
+
     return (
-        <section className="container mt-5 pt-5">
+        <section className="container mt-5 pt-5 " >
             <div className="text-center">
                 <h6 style={{ fontWeight: '700' }} className="custom-primary"> OUR DOCTORS</h6>
             </div>

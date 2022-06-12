@@ -7,7 +7,7 @@ const HeaderMain = () => {
     return (
             <main className="container ">
                 <div style={{height:'500px'}} className="d-flex align-content-center row g-4">
-                    <div className="col-md-4 offset-md-1 m-auto">
+                    <div className="col-md-4 offset-md-1 m-auto mt-5">
                         <h2 className="custom-dark "> Your New Smile
                         <br />
                           Starts Here
