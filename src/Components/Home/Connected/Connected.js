@@ -1,41 +1,78 @@
-import React from 'react';
-import { Button } from 'react-bootstrap';
+import React, { useRef } from 'react';
+import { Button, Col, Container, FloatingLabel, Form, Row } from 'react-bootstrap';
+import emailjs from '@emailjs/browser';
+import swal from 'sweetalert';
 
 
 const Connected = () => {
+    const form = useRef();
 
-    const handleSubmit = e => console.log(e);
+    const sendEmail = (e) => {
+        e.preventDefault();
+
+        emailjs.sendForm('service_az16bjh', 'template_0ah5245', form.current, 'user_tbFNuorI3og0UJCyvUeAH')
+            .then(res => {
+                swal({
+                    title: "Your Message Send Successfully",
+                    text: "Thank You",
+                    icon: "success",
+                    button: "ok",
+                });
+               
+            },
+                (error) => {
+                    swal({
+                        title: `${error.text}`,
+                        text: "Sorry! Try Again",
+                        icon: "error",
+                        button: "ok",
+                    });
+                });
+
+        e.target.reset()
+    };
 
     return (
         <section className="home-bg mt-5 pt-5">
-            <main className="container ">
+
+            <Container>
                 <div className="text-center">
                     <h6 style={{ fontWeight: '500' }} className="custom-primary"> CONNECT US</h6>
                     <h2 className="text-white mt-1">Always Connect with us</h2>
                 </div>
 
-                <div className='row'>
-                    <div className="col-md-7 col-sm-4 m-auto">
-                        <div className="p-5">
-                            <form onSubmit={handleSubmit}>
-                                <div class="mb-3">
-                                    <input type="email" name="email" class="form-control border-0" placeholder="your email" />
-                                </div>
-                                <div class="mb-3">
-                                    <input type="text" name="subject" class="form-control border-0" placeholder="subject" />
-                                </div>
-                                <div class="mb-3">
-                                    <textarea type="text" name="message" class="form-control border-0" rows="4">your message </textarea>
-                                </div>
-                                <div class="mb-3 text-center">
+                <Form className="mt-3 p-3" ref={form} onSubmit={sendEmail} >
+                    <Row className="g-3 ">
+                        <Col className="mx-auto" sm={12} md={6} >
 
-                                    <Button type="submit" className="form-control btn-main border-0 rounded-3 mb-2">Send</Button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </main>
+                            <FloatingLabel className=" mb-2" controlId="floatingInput" label="Your name" >
+                                <Form.Control type="text" name="user_name" placeholder="Your name" required />
+                            </FloatingLabel>
+
+                            <FloatingLabel className=" mb-2" controlId="floatingInput" label="Email address" >
+                                <Form.Control type="email" name="user_email" placeholder="Email address" required />
+                            </FloatingLabel>
+
+                            <FloatingLabel className=" mb-2" controlId="floatingInput" label="Subject" >
+                                <Form.Control type="text" name="subject" placeholder="Subject" required />
+                            </FloatingLabel>
+
+                            <FloatingLabel className="mb-2" controlId="floatingTextarea2" label="Message">
+                                <Form.Control type="text" name="message" as="textarea" placeholder="Message" style={{ height: '100px' }} required />
+                            </FloatingLabel>
+
+                            <Button className='form-control my-3 btn-main border-0 rounded-3' type="submit" >
+                                Send
+                            </Button>
+                        </Col>
+                    </Row>
+
+
+                </Form>
+
+
+
+            </Container>
         </section>
     );
 };

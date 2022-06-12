@@ -3,6 +3,8 @@ import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './NavBar.css';
 import useAuth from '../../../hooks/useAuth'
+import toast, { Toaster } from 'react-hot-toast';
+import Logo from '../../../images/main-logo.png'
 
 const NabBar = () => {
     const { user, logOut } = useAuth();
@@ -10,30 +12,30 @@ const NabBar = () => {
     //   logOut-Handel 
     const handelLogOut = () => {
         logOut({});
-        // toast.success("Logged Out", {
-        //     duration: 4000,
-        // });
+        toast.success("Logged Out", {
+            duration: 4000,
+        });
     };
 
     return (
-        <Navbar collapseOnSelect expand="lg" variant="light" bg="light" sticky="top" >
-
+        <Navbar collapseOnSelect expand="lg" variant="dark" bg="dark" sticky="top" >
+            <Toaster />
             <Container>
                 <Navbar.Brand as={Link} to="/" className="">
                     <Image
                         width="100"
-                        height="50"
-                        src="https://i.ibb.co/5GzXkwq/user.png"
+                        height="35"
+                        src={Logo}
                         alt="logo" />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="ms-auto">
-                        <Nav.Link as={Link} to="/home" className="me-3" >Home</Nav.Link>
-                        <Nav.Link as={Link} to="/appointment" className="me-3" >Services</Nav.Link>
-                        <Nav.Link as={Link} to="/review" className="me-3" >Booking-Review</Nav.Link>
-                        <Nav.Link as={Link} to="/dashboard" className="me-3" >Dashboard</Nav.Link>
-                       
+                        <Nav.Link as={Link} to="/home" className="me-3 text-white" >Home</Nav.Link>
+                        <Nav.Link as={Link} to="/appointment" className="me-3 text-white" >Services</Nav.Link>
+                        <Nav.Link as={Link} to="/review" className="me-3 text-white" >Booking-Review</Nav.Link>
+                        <Nav.Link as={Link} to="/dashboard" className="me-3 text-white" >Dashboard</Nav.Link>
+
                         {
                             user?.email ?
                                 <NavDropdown
@@ -43,8 +45,8 @@ const NabBar = () => {
                                                 width="40"
                                                 height="40"
                                                 roundedCircle
-                                                src={user?.photo} /> 
-                                                :
+                                                src={user?.photo} />
+                                            :
                                             <Image
                                                 width="40"
                                                 height="40"

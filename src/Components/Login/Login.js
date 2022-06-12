@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Form, FloatingLabel, Button, Row, Col } from 'react-bootstrap';
+import { Form, FloatingLabel, Button, Row, Col, Container } from 'react-bootstrap';
 import NavBar from '../Shared/NavBar/NabBar'
 import useAuth from '../../hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
 // icons 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGooglePlus, faGithub } from '@fortawesome/free-brands-svg-icons'
+import toast, { Toaster } from 'react-hot-toast';
 
 
 // login-function 
@@ -73,9 +74,15 @@ const Login = () => {
                 .then(res => {
                     setUser(res);
                     navigate(from, { replace: true });
+                    toast.success("Successfully Logged In", {
+                        duration: 4000,
+                    })
                 })
                 .catch(err => {
                     setUser(err)
+                    toast.error(`${user.error}`, {
+                        duration: 4000,
+                    });
                 })
 
         };
@@ -85,12 +92,20 @@ const Login = () => {
             signWithEmailAndPassword(signNewUser.email, signNewUser.password)
                 .then(res => {
                     setUser(res);
-                    navigate(from, { replace: true })
+                    navigate(from, { replace: true });
+                    toast.success("Successfully Logged In", {
+                        duration: 4000,
+                    })
                 })
                 .catch(err => {
                     setUser(err)
+                    toast.error(`${user.error}`, {
+                        duration: 4000,
+                    });
                 })
-        }
+        };
+
+        e.target.reset()
     };
 
 
@@ -99,14 +114,17 @@ const Login = () => {
         facebookLogin()
             .then(res => {
                 setUser(res);
-                navigate(from, { replace: true })
-                
+                navigate(from, { replace: true });
+                toast.success("Successfully Logged In", {
+                    duration: 4000,
+                })
             })
             .catch(err => {
                 setUser(err)
+                toast.error(`${user.error}`, {
+                    duration: 4000,
+                });
             })
-
-
     };
 
     // googleSignIn
@@ -114,11 +132,16 @@ const Login = () => {
         googleLogin()
             .then(res => {
                 setUser(res);
-                navigate(from, { replace: true })
-                 alert('logged in')
+                navigate(from, { replace: true });
+                toast.success("Successfully Logged In", {
+                    duration: 4000,
+                })
             })
             .catch(err => {
                 setUser(err)
+                toast.error(`${user.error}`, {
+                    duration: 4000,
+                });
             })
     };
 
@@ -127,10 +150,16 @@ const Login = () => {
         githubLogin()
             .then(res => {
                 setUser(res);
-                navigate(from, { replace: true })
+                navigate(from, { replace: true });
+                toast.success("Successfully Logged In", {
+                    duration: 4000,
+                })
             })
             .catch(err => {
                 setUser(err)
+                toast.error(`${user.error}`, {
+                    duration: 4000,
+                });
             })
     };
 
@@ -139,9 +168,9 @@ const Login = () => {
     return (
         <section>
             <NavBar />
-        
-            <main className="container my-5">
+            <Toaster />
 
+            <Container className=" my-5">
                 <Row>
                     <Col className="mx-auto" md={6} >
 
@@ -242,7 +271,7 @@ const Login = () => {
                     </div>
 
                 </div>
-            </main>
+            </Container>
         </section >
     );
 };
