@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import './AppointmentFrom.css'
+import React from 'react';
 import { useForm } from "react-hook-form";
 import { Button, FloatingLabel, Form, Modal } from 'react-bootstrap';
 import useAuth from '../../../hooks/useAuth';
