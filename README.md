@@ -4,7 +4,7 @@
 
 
 <a  href="">
-<img  width="100%"  height="100%"  src="./src/images/moden-dental.png" />
+<img  width="100%"  height="100%"  src="./src/images/modern-dental.png" />
 </a>
 
 ## About & Features
@@ -31,6 +31,6 @@
 - **mongoDB**
 
 
-### `Back-end Repository:` [https://github.com/shakil232/Modern-Dental-Clinic-Server]
+### `Back-end Repository:` (https://github.com/shakil232/Modern-Dental-Clinic-Server)
 
 <hr/>
