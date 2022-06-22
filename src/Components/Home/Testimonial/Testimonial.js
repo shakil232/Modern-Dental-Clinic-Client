@@ -1,46 +1,67 @@
 import React from 'react';
-import Wilson from '../../../images/Wilson Harry.png'
 import TestimonialCard from '../TestimonialCard/TestimonialCard';
+import './Testimonial.css';
+// swiper
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react'
+import 'swiper/swiper.min.css'
+import 'swiper/modules/navigation/navigation.min.css'
+import 'swiper/modules/pagination/pagination.min.css'
+// import Swiper core and required modules
+import SwiperCore, { Autoplay, Navigation, Pagination } from 'swiper';
+import testimonialInfo from '../../../DataTable/TestimonialsInfo';
+// install Swiper modules
+SwiperCore.use([Autoplay, Navigation, Pagination]);
 
 
-const testimonialInfo = [
-    {
-        comments: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae explicabo consectetur ut aut. Quasi odio quia suscipit esse ducimus id et, exercitationem perferendis sequi dolore. ',
-        name: ' Wilson Herry',
-        address: 'california',
-        image: Wilson
-    },
-    {
-        comments: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae explicabo consectetur ut aut. Quasi odio quia suscipit esse ducimus id et, exercitationem perferendis sequi dolore. ',
-        name: ' Wilson Herry',
-        address: 'california',
-        image: Wilson
-    },
-    {
-        comments: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae explicabo consectetur ut aut. Quasi odio quia suscipit esse ducimus id et, exercitationem perferendis sequi dolore.',
-        name: ' Wilson Herry',
-        address: 'california',
-        image: Wilson
-    }
-]
+
+
 const Testimonial = () => {
+
     return (
-        <section className="container mt-5 pt-5">
+        <section className="container testimonials mt-5 pt-5">
             <div className="testimonial-bg">
                 <h6 style={{ fontWeight: '700' }} className="custom-primary"> TESTIMONIAL</h6>
                 <h2 className="custom-dark mt-2">What's Our Patients <br /> Says </h2>
             </div>
-            <main className="mt-5 d-flex align-content-center justify-content-center ">
-                <div className=" row ">
+            <main className="mt-5 d-flex align-content-center justify-content-center">
+                {/* Swiper-Slider-Start */}
+                <Swiper
+                    className="mySwiper mb-5"
+                    slidesPerView={1}
+                    spaceBetween={1}
+                    loop={true}
+                    centeredSlides={true}
+                    navigation={true}
+                    autoplay={{
+                        "delay": 3500,
+                        "disableOnInteraction": false
+                    }}
+                    breakpoints={{
+                        "640": {
+                            "slidesPerView": 1,
+                            "spaceBetween": 20
+                        },
+                        "768": {
+                            "slidesPerView": 2,
+                            "spaceBetween": 40
+                        },
+                        "1024": {
+                            "slidesPerView": 3,
+                            "spaceBetween": 40
+                        }
+                    }} >
 
                     {
-                        testimonialInfo.map(testimonial =>
-                            <TestimonialCard testimonial={testimonial}></TestimonialCard>
-
-                        )
+                        testimonialInfo.map((testimonial) => (
+                            <SwiperSlide>
+                                <TestimonialCard testimonial={testimonial} 
+                                key={testimonial.id}
+                                />
+                            </SwiperSlide>
+                        ))
                     }
 
-                </div>
+                </Swiper>
             </main>
         </section>
     );

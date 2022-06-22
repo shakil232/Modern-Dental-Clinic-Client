@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { Form, FloatingLabel, Button, Row, Col, Container } from 'react-bootstrap';
+import { Form, FloatingLabel, Button, Row, Col, Container, Toast } from 'react-bootstrap';
 import NavBar from '../Shared/NavBar/NabBar'
 import useAuth from '../../hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 // icons 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faGooglePlus, faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faFacebook, faGooglePlus, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -17,14 +18,13 @@ const Login = () => {
     const [signNewUser, setSignNewUser] = useState({
         name: '',
         email: '',
-        password: '',
-        success: true,
-        error: ''
+        password: ''
     });
 
     const [newUser, setNewUser] = useState(false);
     const [passCheck, setPassCheck] = useState(false);
     const [emailCheck, setEmailCheck] = useState(false);
+    const [show, setShow] = useState(true);
 
     // firebaseAUth 
     const {
@@ -53,9 +53,8 @@ const Login = () => {
             isFieldValid = /\S+@\S+\.\S+/.test(e.target.value);
         }
         if (e.target.name === 'password') {
-            const passLength = e.target.value >= 6;
             const passValid = /\d{1}/.test(e.target.value)
-            isFieldValid = passLength && passValid;
+            isFieldValid = passValid;
         }
         if (isFieldValid) {
             const newUserInfo = { ...signNewUser };
@@ -74,14 +73,15 @@ const Login = () => {
             createWithEmailAndPassword(signNewUser.name, signNewUser.email, signNewUser.password)
                 .then(res => {
                     setUser(res);
+                    console.log(res)
                     navigate(from, { replace: true });
-                    toast.success("Successfully Logged In", {
+                    toast.success("Successfully User Created", {
                         duration: 4000,
                     })
                 })
                 .catch(err => {
                     setUser(err)
-                    toast.error(`${user.error}`, {
+                    toast.error(user.error, {
                         duration: 4000,
                     });
                 })
@@ -100,7 +100,7 @@ const Login = () => {
                 })
                 .catch(err => {
                     setUser(err)
-                    toast.error(`${user.error}`, {
+                    toast.error(user.error, {
                         duration: 4000,
                     });
                 })
@@ -122,7 +122,7 @@ const Login = () => {
             })
             .catch(err => {
                 setUser(err)
-                toast.error(`${user.error}`, {
+                toast.error(user.error, {
                     duration: 4000,
                 });
             })
@@ -140,7 +140,7 @@ const Login = () => {
             })
             .catch(err => {
                 setUser(err)
-                toast.error(`${user.error}`, {
+                toast.error(user.error, {
                     duration: 4000,
                 });
             })
@@ -158,7 +158,7 @@ const Login = () => {
             })
             .catch(err => {
                 setUser(err)
-                toast.error(`${user.error}`, {
+                toast.error(user.error, {
                     duration: 4000,
                 });
             })
@@ -167,10 +167,27 @@ const Login = () => {
 
 
     return (
-        <section>
+        <>
             <NavBar />
             <Toaster />
 
+            {/* admin-login-alert  */}
+            <Toast className=" bg-info me-auto" onClose={() => setShow(false)} show={show} delay={7000} autohide>
+                <Toast.Header>
+                    <FontAwesomeIcon className="custom-primary me-2" icon={faCircleInfo} />
+                    <strong className="me-auto">Important Info</strong>
+                </Toast.Header>
+                <Toast.Body className="bg-dark text-white text-center">
+                    Sign in as an admin to test the admin panel
+                    <br />
+                    use this email and password
+                    <br />
+                    <b>test@gmail.com <br />
+                        test1234</b>
+                </Toast.Body>
+            </Toast>
+
+            {/* sign-register-main-container  */}
             <Container className=" my-5">
                 <Row>
                     <Col className="mx-auto" md={6} >
@@ -192,7 +209,7 @@ const Login = () => {
                                 {emailCheck && <span style={{ fontWeight: "600" }} className="text-danger my-2">Please Give a Valid Email.</span>}
 
                                 <FloatingLabel className="mt-3" controlId="floatingInput" label="Password" >
-                                    <Form.Control onBlur={handelBlur} onClick={() => setPassCheck(!passCheck)} name="password" type="password" placeholder="Password" />
+                                    <Form.Control onBlur={handelBlur} onClick={() => setPassCheck(!passCheck)} name="password" type="password" placeholder="password" />
                                 </FloatingLabel>
                                 {passCheck && <span style={{ fontWeight: "600" }} className="text-danger mt-2 mb-1">password Atleast six characters and with One digit</span>}
 
@@ -217,7 +234,7 @@ const Login = () => {
                                 </FloatingLabel>
 
                                 <FloatingLabel className="mt-3" controlId="floatingInput" label="Password" >
-                                    <Form.Control onBlur={handelBlur} name="password" type="password" placeholder="Password" />
+                                    <Form.Control onBlur={handelBlur} name="password" type="password" placeholder="password" />
                                 </FloatingLabel>
 
                                 <Button type="submit" className="form-control btn-main border-0 rounded-3 mt-3" >Login</Button>
@@ -273,7 +290,7 @@ const Login = () => {
 
                 </div>
             </Container>
-        </section >
+        </ >
     );
 };
 

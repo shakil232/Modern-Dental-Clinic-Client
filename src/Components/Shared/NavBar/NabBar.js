@@ -10,7 +10,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTooth } from '@fortawesome/free-solid-svg-icons'
 
 
-
 const NabBar = () => {
     const { user, logOut } = useAuth();
 
@@ -21,6 +20,7 @@ const NabBar = () => {
             duration: 4000,
         });
     };
+
 
     return (
         <Navbar collapseOnSelect expand="lg" variant="dark" bg="dark" sticky="top" >
@@ -36,7 +36,7 @@ const NabBar = () => {
                     <Nav className="ms-auto">
                         <Nav.Link as={Link} to="/home" className="me-3 text-white" >Home</Nav.Link>
                         <Nav.Link as={Link} to="/appointment" className="me-3 text-white" >Services</Nav.Link>
-                        <Nav.Link as={Link} to="/review" className="me-3 text-white" >Booking-Review</Nav.Link>
+                        <Nav.Link as={Link} to="/review" className="me-3 text-white" >Review</Nav.Link>
                         <Nav.Link as={Link} to="/dashboard" className="me-3 text-white" >Dashboard</Nav.Link>
 
                         {
@@ -67,7 +67,6 @@ const NabBar = () => {
                                         <Link onClick={handelLogOut} className=" btn btn-logout bg-transparent border-danger text-danger  rounded-3" to="/">LogOut</Link>
                                     </div>
                                 </NavDropdown>
-
                                 : <Link className=" btn btn-main border-0 rounded-3 " to="/login">Login</Link>
                         }
 

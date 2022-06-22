@@ -7,6 +7,7 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     onAuthStateChanged,
+    getIdToken,
     updateProfile,
     signOut
 } from "firebase/auth"
@@ -21,7 +22,7 @@ firebaseInitialization()
 // useFirebase-Function 
 const useFirebase = () => {
     const auth = getAuth();
-    const [ isLoading, setIsLoading ] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
     const [user, setUser] = useState({
         name: '',
         email: '',
@@ -30,6 +31,8 @@ const useFirebase = () => {
         error: '',
         photo: ''
     })
+
+  
 
     // googleLogin
     const googleLogin = () => {
@@ -53,7 +56,7 @@ const useFirebase = () => {
                 newUserInfo.error = err.message;
                 return newUserInfo;
             })
-            .finally(()=> setIsLoading(false))
+            .finally(() => setIsLoading(false))
     };
 
     // facebookLogin
@@ -78,7 +81,7 @@ const useFirebase = () => {
                 newUserInfo.error = err.message;
                 return newUserInfo;
             })
-            .finally(()=> setIsLoading(false))
+            .finally(() => setIsLoading(false))
 
     };
 
@@ -104,7 +107,7 @@ const useFirebase = () => {
                 newUserInfo.error = err.message;
                 return newUserInfo;
             })
-            .finally(()=> setIsLoading(false))
+            .finally(() => setIsLoading(false))
     };
 
     // createWithEmailAndPassword
@@ -124,7 +127,7 @@ const useFirebase = () => {
                 newUserInfo.error = err.message;
                 return newUserInfo;
             })
-            .finally(()=> setIsLoading(false))
+            .finally(() => setIsLoading(false))
     };
 
     // signWithEmailAndPassword
@@ -144,7 +147,7 @@ const useFirebase = () => {
                 newUserInfo.error = err.message;
                 return newUserInfo
             })
-            .finally(()=> setIsLoading(false))
+            .finally(() => setIsLoading(false))
 
     };
 
@@ -152,6 +155,8 @@ const useFirebase = () => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
+                getIdToken(user)
+                    .then(idToken => localStorage.setItem('idToken', idToken))
                 setUser(user)
             }
             else { setUser({}) }
@@ -174,7 +179,7 @@ const useFirebase = () => {
         signOut(auth)
             .then(() => setUser({}))
             .catch((error) => { })
-            .finally(()=> setIsLoading(false))
+            .finally(() => setIsLoading(false))
     }
 
     return {

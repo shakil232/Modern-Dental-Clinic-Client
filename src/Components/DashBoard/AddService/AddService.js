@@ -1,21 +1,39 @@
+import axios from 'axios';
 import React from 'react';
 import { Col, FloatingLabel, Form, Row, Button } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
+import swal from 'sweetalert';
+
 
 
 const AddService = () => {
-
-    const { register,handleSubmit } = useForm();
+    const { register, handleSubmit, reset } = useForm();
 
     const onSubmit = data => {
         const servicesInfo = {
-            servicesName: data.name,
-            servicesPrice: data.price,
-            servicesTime: data.time,
-            servicesSpace: data.space
+            'servicesName': data.name,
+            'servicesCost': data.cost,
+            'servicesTime': data.time,
+            'servicesSpace': data.space
         }
-        console.log(servicesInfo)
 
+        // post-Api
+        const url = `http://localhost:5000/addServices`
+        axios.post(url,servicesInfo)
+        .then(res =>{
+            if(res.data.insertedId){
+               swal({
+                    title: "Successfully Uploaded",
+                    text: "Your new service has been successfully added.",
+                    icon: "success",
+                    button: "ok",
+                });
+              reset()
+            }
+        })
+        .catch(err => {
+            swal("Failed!", "Please Try Again!", "error");
+        })
     };
 
 
@@ -23,30 +41,30 @@ const AddService = () => {
         <section className="container custom-height mt-4 ">
             <main className=" bg-white p-5 rounded-3 shadow-lg">
                 <h3 className="custom-primary">Add Services </h3>
-                <Form  className="mt-3 p-3 border border-muted" onSubmit={handleSubmit(onSubmit)} >
+                <Form className="mt-3 p-3 border border-muted" onSubmit={handleSubmit(onSubmit)} >
                     <Row className="g-3 p-3">
-                        
+
                         <Col sm={12} md={6} >
                             <FloatingLabel className="mb-2" controlId="floatingInput" label="Service Name" >
                                 <Form.Control type="name" name="name" placeholder="name"
-                                {...register("name")} />
+                                    {...register("name")} />
                             </FloatingLabel>
 
-                            <FloatingLabel controlId="floatingInput" label="Price" >
-                                <Form.Control type="text" name="price" placeholder="price" 
-                                {...register("price")} /> 
+                            <FloatingLabel controlId="floatingInput" label="Cost" >
+                                <Form.Control type="text" name="cost" placeholder="cost"
+                                    {...register("cost")} />
                             </FloatingLabel>
                         </Col>
 
                         <Col sm={12} md={6}>
                             <FloatingLabel className="mb-2" controlId="floatingInput" label="Time" >
                                 <Form.Control type="text" name="time" placeholder="time"
-                                {...register("time")} />
+                                    {...register("time")} />
                             </FloatingLabel>
 
                             <FloatingLabel controlId="floatingInput" label="Space" >
                                 <Form.Control type="text" name="space" placeholder="space"
-                                {...register("space")} />
+                                    {...register("space")} />
                             </FloatingLabel>
                         </Col>
 

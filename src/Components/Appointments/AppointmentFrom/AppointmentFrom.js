@@ -1,34 +1,44 @@
 import React, { useState } from 'react';
 import './AppointmentFrom.css'
 import { useForm } from "react-hook-form";
-import { Button, Modal } from 'react-bootstrap';
+import { Button, FloatingLabel, Form, Modal } from 'react-bootstrap';
+import useAuth from '../../../hooks/useAuth';
+import axios from 'axios';
+import swal from 'sweetalert';
 
 
 
+const AppointmentFrom = ({ service, date, lgShow, setLgShow }) => {
+    const { user } = useAuth();
+    const { register, handleSubmit } = useForm();
 
-const AppointmentFrom = ({ booking, date, lgShow, setLgShow }) => {
-
-    const { register, handleSubmit} = useForm();
-    const [ bookingInfo, setBookingInfo ] = useState({
-        // displayName: user.displayName,
-        // email: user.email,
-        // phone: ''
-    });
-
-
-    // from-submit 
-    const onSubmit = data =>{
-        const presentInfo = {
-            name: data.name,
-            email: data.email,
-            phone: data.phone,
-            price: booking.price,
-            date: data,
-            time: booking.time,
-            action: 'pending'
+    // appointment-booking -submit
+    const onSubmit = data => {
+        const patientInfo = {
+            'serviceName': service.servicesName,
+            'PatientName': data.name,
+            'PatientEmail': data.email,
+            'PatientPhone': data.phone,
+            'serviceCost': service.servicesCost,
+            'serviceDate': date.toLocaleDateString(),
+            'serviceTime': service.servicesTime,
+            'status': 'Pending'
         }
-        console.log('presentInfo', presentInfo)
+
+        // BOOKED-Appointment-database-post-api 
+        const url = `http://localhost:5000/addAppointments`
+        axios.post(url, patientInfo)
+            .then(res => {
+                if (res.data.insertedId) {
+                    swal("Successfully Booked!", "Your Appointment has been successfully Booked", "success");
+                    setLgShow(false)
+                }
+
+            })
+            .catch(err => swal("Failed!", err.message, "error") )
+
     };
+    
 
     return (
         <>
@@ -39,36 +49,39 @@ const AppointmentFrom = ({ booking, date, lgShow, setLgShow }) => {
             >
                 <Modal.Header closeButton>
                     <Modal.Title className="custom-primary">
-                        {booking.name}
+                        {service.servicesName}
                     </Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
-                    <form onSubmit={handleSubmit(onSubmit)}>
+                    <Form onSubmit={handleSubmit(onSubmit)}>
+                        <FloatingLabel controlId="floatingInput" label="Time" >
+                            <Form.Control name="time" defaultValue={service.servicesTime}  {...register("time")} disabled />
+                        </FloatingLabel>
 
-                        <div >
-                            <input className="form-control" name="time" defaultValue={booking.time}  {...register("time")}  disabled  />
-                        </div>
-                        <div>
-                            <input className="form-control mt-2" type="text" name="name" placeholder="Your name" {...register("name")} />
-                        </div>
-                        <div>
-                            <input className="form-control mt-2" type="email" name="email" placeholder="Your email"  {...register("email")} />
-                        </div>
-                        <div>
-                            <input className="form-control mt-2" type="text" name="phone" placeholder="Phone Number"  {...register("phone")} />
-                        </div>
-                        <div>
-                            <input className="form-control mt-2" type="text" name="price" defaultValue={booking.price} {...register("price")} disabled />
-                        </div>
-                        <div>
-                            <input className="form-control mt-2" name="date" defaultValue={date.toDateString()} {...register("date")} disabled />
-                        </div>
-                        <div className="form-group mt-4">
-                            <Button type="submit" className=" btn-main border-0 rounded-3 form-control" >Submit</Button>
-                        </div>
+                        <FloatingLabel controlId="floatingInput" label="Name" >
+                            <Form.Control className=" mt-2" type="text" name="name" defaultValue={user.displayName} {...register("name")} required />
+                        </FloatingLabel>
 
-                    </form>
+                        <FloatingLabel controlId="floatingInput" label="Email" >
+                            <Form.Control className=" mt-2" type="email" name="email" defaultValue={user.email}  {...register("email")} required />
+                        </FloatingLabel>
+
+                        <FloatingLabel controlId="floatingInput" label="Phone Number" >
+                            <Form.Control className=" mt-2" type="text" name="phone" placeholder="Phone Number"  {...register("phone")} required />
+                        </FloatingLabel>
+
+                        <FloatingLabel controlId="floatingInput" label="Cost" >
+                            <Form.Control className="mt-2" type="text" name="cost" defaultValue={`${service.servicesCost} $`} {...register("cost")} disabled />
+                        </FloatingLabel>
+
+                        <FloatingLabel controlId="floatingInput" label="Date" >
+                            <Form.Control className="mt-2" name="date" defaultValue={date.toLocaleDateString()} {...register("date")} disabled />
+                        </FloatingLabel>
+
+                        <Button type="submit" className="mt-4 btn-main border-0 rounded-3" >Submit</Button>
+
+                    </Form>
 
                 </Modal.Body>
             </Modal>

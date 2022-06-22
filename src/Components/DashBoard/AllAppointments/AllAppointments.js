@@ -1,16 +1,53 @@
-import React from 'react';
-import { Form, Table } from 'react-bootstrap';
-import './AllAppointment.css'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Table } from 'react-bootstrap';
+import swal from 'sweetalert';
 
 
 
 const AllAppointments = () => {
+    const [appointments, setAppointments] = useState([]);
+
+    //   loadAppointment-data 
+    useEffect(() => {
+        const url = `http://localhost:5000/allAppointments`
+        axios.get(url)
+            .then(res => setAppointments(res.data))
+            .catch(err => swal("Failed!", "Please Try Again!", "error"))
+
+    }, []);
+
+    const handleStatusChange = (id, status) => {
+        let modifiedOrders = [];
+        appointments.forEach(appointment => {
+            if (appointment._id === id) {
+                appointment.status = status;
+            }
+            modifiedOrders.push(appointment)
+        })
+        setAppointments(modifiedOrders);
+
+        const modifiedStatus = { id, status }
+
+        const url = `http://localhost:5000/statusUpdate`
+        axios.put(url, modifiedStatus)
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
+                    swal("Status Successfully Update", `Set to ${status}`, "success");
+                }
+
+            })
+            .catch(err => swal("Failed!", "Please Try Again!", "error"))
+    };
+
+
     return (
         <section className="container mt-4 ">
             <main className=" bg-white p-4 h-auto rounded-3 shadow-lg">
                 <h3 className="custom-primary" >All-Appointment</h3>
                 <div className="mt-4">
-                    <Table striped bordered hover>
+
+                    <Table striped borderless responsiver>
                         <thead>
                             <tr className='custom-primary'>
                                 <th>Name</th>
@@ -21,149 +58,30 @@ const AllAppointments = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>adam</td>
-                                <td>01718160232</td>
-                                <td>22-22-22</td>
-                                <td>8:30-10.00 pm</td>
-                                <td>
-                                    <Form.Select className="">
-                                        <option >Pending</option>
-                                        <option value="1">Pending</option>
-                                        <option value="2">Approved</option>
-                                        <option value="3">Cancelled</option>
-                                    </Form.Select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>adam</td>
-                                <td>01718160232</td>
-                                <td>22-22-22</td>
-                                <td>8:30-10.00 pm</td>
-                                <td>
-                                    <Form.Select className="">
-                                        <option >Pending</option>
-                                        <option value="1">Pending</option>
-                                        <option value="2">Approved</option>
-                                        <option value="3">Cancelled</option>
-                                    </Form.Select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>adam</td>
-                                <td>01718160232</td>
-                                <td>22-22-22</td>
-                                <td>8:30-10.00 pm</td>
-                                <td>
-                                    <Form.Select className="">
-                                        <option >Pending</option>
-                                        <option value="1">Pending</option>
-                                        <option value="2">Approved</option>
-                                        <option value="3">Cancelled</option>
-                                    </Form.Select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>adam</td>
-                                <td>01718160232</td>
-                                <td>22-22-22</td>
-                                <td>8:30-10.00 pm</td>
-                                <td>
-                                    <Form.Select className="">
-                                        <option >Pending</option>
-                                        <option value="1">Pending</option>
-                                        <option value="2">Approved</option>
-                                        <option value="3">Cancelled</option>
-                                    </Form.Select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>adam</td>
-                                <td>01718160232</td>
-                                <td>22-22-22</td>
-                                <td>8:30-10.00 pm</td>
-                                <td>
-                                    <Form.Select aria-label="Default select example">
-                                        <option >Pending</option>
-                                        <option value="1">Pending</option>
-                                        <option value="2">Approved</option>
-                                        <option value="3">Cancelled</option>
-                                    </Form.Select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>adam</td>
-                                <td>01718160232</td>
-                                <td>22-22-22</td>
-                                <td>8:30-10.00 pm</td>
-                                <td>
-                                    <Form.Select aria-label="Default select example">
-                                        <option >Pending</option>
-                                        <option value="1">Pending</option>
-                                        <option value="2">Approved</option>
-                                        <option value="3">Cancelled</option>
-                                    </Form.Select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>adam</td>
-                                <td>01718160232</td>
-                                <td>22-22-22</td>
-                                <td>8:30-10.00 pm</td>
-                                <td>
-                                    <Form.Select aria-label="Default select example">
-                                        <option >Pending</option>
-                                        <option value="1">Pending</option>
-                                        <option value="2">Approved</option>
-                                        <option value="3">Cancelled</option>
-                                    </Form.Select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>adam</td>
-                                <td>01718160232</td>
-                                <td>22-22-22</td>
-                                <td>8:30-10.00 pm</td>
-                                <td>
-                                    <Form.Select aria-label="Default select example">
-                                        <option >Pending</option>
-                                        <option value="1">Pending</option>
-                                        <option value="2">Approved</option>
-                                        <option value="3">Cancelled</option>
-                                    </Form.Select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>adam</td>
-                                <td>01718160232</td>
-                                <td>22-22-22</td>
-                                <td>8:30-10.00 pm</td>
-                                <td>
-                                    <Form.Select aria-label="Default select example">
-                                        <option >Pending</option>
-                                        <option value="1">Pending</option>
-                                        <option value="2">Approved</option>
-                                        <option value="3">Cancelled</option>
-                                    </Form.Select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>adam</td>
-                                <td>01718160232</td>
-                                <td>22-22-22</td>
-                                <td>8:30-10.00 pm</td>
-                                <td>
-                                    <Form.Select aria-label="Default select example">
-                                        <option >Pending</option>
-                                        <option value="1">Pending</option>
-                                        <option value="2">Approved</option>
-                                        <option value="3">Cancelled</option>
-                                    </Form.Select>
-                                </td>
-                            </tr>
+                            {
+                                appointments.map(appointment =>
 
+                                    <tr key={appointment._id}>
+                                        <td> {appointment.serviceName} </td>
+                                        <td> {appointment.PatientPhone} </td>
+                                        <td> {appointment.serviceDate} </td>
+                                        <td> {appointment.serviceTime} </td>
+                                        <td>
+                                            <select
+                                                className={appointment.status === "Pending" ? "btn btn-danger" : appointment.status === "Done" ? "btn btn-success" : "btn btn-info"}
+                                                defaultValue={appointment.status}
+                                                onChange={e => handleStatusChange(appointment._id, e.target.value)}>
+                                                <option className="bg-white text-muted">Pending</option>
+                                                <option className="bg-white text-muted">On-Going</option>
+                                                <option className="bg-white text-muted">Done</option>
+                                            </select>
+                                        </td>
+                                    </tr>
 
+                                )
+                            }
                         </tbody>
+
                     </Table>
                 </div>
             </main>

@@ -20,6 +20,7 @@ const DoctorCard = ({ doctor }) => {
         });
     }, []);
 
+
     return (
         <div className="col-md-4  g-5">
             <Card className="border-0 m-auto" style={{ width: '16rem' }}

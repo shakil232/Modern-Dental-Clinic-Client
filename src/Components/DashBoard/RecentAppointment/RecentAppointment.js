@@ -1,59 +1,76 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'react-calendar/dist/Calendar.css';
 import Calendar from 'react-calendar';
-import { Table } from 'react-bootstrap';
+import { Col, Container, Row, Table } from 'react-bootstrap';
+import axios from 'axios';
+import swal from 'sweetalert';
+
 
 
 const RecentAppointment = () => {
     const [selectDate, setSelectDate] = useState(new Date());
+    const [todayAppointment, setTodayAppointment] = useState([]);
 
+    // handelDate-Change 
     const handelDateChange = date => {
         setSelectDate(date)
     };
 
-    return (
-        <main className="container">
-            <div style={{ height: '600px' }} className="d-flex align-content-center row g-4">
-                <div className="col-md-5 px-5">
-                    <h4 className="custom-primary "> Today Appointment-{selectDate.toDateString()} </h4>
-                    
-                    <div >
-                        <Calendar className="border-0 shadow-lg "
-                            onChange={handelDateChange}
-                            value={new Date()} />
-                    </div>
-                </div>
 
-                <div className="col-md-7 px-5">
-                    <Table striped hover >
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Time</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td> Teath Cleaning</td>
-                                <td>8:30-10.00 pm</td>
-                                <td>Approved</td>
-                            </tr>
-                            <tr>
-                                <td> Teath Cleaning</td>
-                                <td>8:30-10.00 pm</td>
-                                <td>Approved</td>
-                            </tr>
-                            <tr>
-                                <td> Teath Cleaning</td>
-                                <td>8:30-10.00 pm</td>
-                                <td>Approved</td>
-                            </tr>
-                        </tbody>
-                    </Table>
-                </div>
-            </div>
-        </main>
+    const localDate = selectDate.toLocaleDateString();
+    // loadRecent-Service 
+    useEffect(() => {
+        const url = `http://localhost:5000/appointmentByDate?date=${localDate}`
+        axios.get(url)
+            .then(res => setTodayAppointment(res.data))
+            .catch(err => swal("Failed!", "Please Try Again!", "error"))
+
+    }, [localDate]);
+
+
+    return (
+        <Container style={{ height: '600px' }}>
+            <h4 className="custom-dark text-center fw-bold"> Today Appointment-{selectDate.toDateString()} </h4>
+
+            <Row className="d-flex justify-content-center mt-5 g-2">
+                <Col md={5} sm={12} className=" px-3">
+                    <Calendar className="border-0 shadow-lg rounded-3 "
+                        onChange={handelDateChange}
+                        value={new Date()} />
+                </Col>
+
+                <Col md={7} sm={12} className="h-auto px-2 bg-white shadow rounded-3">
+                    <div className="mt-4">
+                        <Table hover borderless responsive>
+                            <thead>
+                                <tr className='custom-primary'>
+                                    <th>PatientName</th>
+                                    <th>Service</th>
+                                    <th>Time</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    todayAppointment.map(today =>
+
+                                        <tr key={today._id}>
+                                            <td> {today.PatientName} </td>
+                                            <td> {today.serviceName} </td>
+                                            <td> {today.serviceTime} </td>
+                                            <td >
+                                                <p className={`book-${today.status}  rounded-3 text-white text-center`}>{today.status}</p>
+                                            </td>
+                                        </tr>
+
+                                    )
+                                }
+                            </tbody>
+                        </Table>
+                    </div>
+                </Col>
+            </Row>
+        </Container>
     );
 };
 

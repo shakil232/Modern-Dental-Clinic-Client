@@ -1,56 +1,73 @@
 
-
-.bg-dark{
+/* custom-css    */
+.bg-dark {
   background-color: #3A4256;
 }
-.custom-dark{
+
+.custom-dark {
   color: #3A4256;
 }
-.bg-primary{
+
+.bg-primary {
   background-color: #1ED2D4;
 }
-.custom-primary{
+
+.custom-primary {
   color: #1ED2D4;
 }
-.btn-custom{
+
+.btn-custom {
   font-weight: 600 !important;
   padding: 10px !important;
   border-radius: 5px !important;
   background: linear-gradient(to right, #18D2B5 0%, #10CFE6 100%) !important;
   color: white !important;
 }
-.dashboard-bg{
+
+.dashboard-bg {
   background-color: lightcyan;
 }
-.custom-height
-{
-    height: 507px !important;
+
+.custom-height {
+  height: 507px !important;
 }
 
-/* custom-css    */
-.btn-main
-{
+.btn-main {
   background-color: #1ED2D4 !important;
   color: white !important;
   font-weight: 600 !important;
   padding: 10px !important;
 }
 
-.cursor
-{  
-    font-weight: 700;
-    color: #1ED2D4;
-    cursor: pointer;
+.cursor {
+  font-weight: 700;
+  color: #1ED2D4;
+  cursor: pointer;
 }
 
+/* status-color */
+.book-Pending {
+  background-color: #DC3545;
+}
 
+.book-On-Going {
+  background-color: #0DCAF0;
+}
+
+.book-Done {
+  background-color: #198754;
+}
+
+/* default css  */
 .App-link {
   color: #61dafb;
 }
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

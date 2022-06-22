@@ -12,6 +12,7 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.7.1",
+    "@tippyjs/react": "^4.2.6",
     "aos": "^2.3.4",
     "axios": "^0.27.2",
     "bootstrap": "^5.1.3",

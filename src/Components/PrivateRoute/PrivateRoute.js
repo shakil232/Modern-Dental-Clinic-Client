@@ -5,13 +5,12 @@ import FadeLoader from "react-spinners/FadeLoader";
 
 
 const PrivateRoute = () => {
-
     const location = useLocation();
     const { user, isLoading } = useAuth()
 
     return (
 
-        isLoading  ?
+        isLoading ?
             <div className="d-flex align-content-center justify-content-center p-5">
                 <FadeLoader color={"#36D7B7"} loading={isLoading}
                     width={8}
@@ -19,7 +18,7 @@ const PrivateRoute = () => {
                     radius={10}
                     margin={10}
                 />
-            </div> 
+            </div>
             :
             user?.email ?
                 <Outlet />
@@ -29,9 +28,6 @@ const PrivateRoute = () => {
                     state={{ from: location }}
                     replace
                 />
-
-
-
 
     );
 };

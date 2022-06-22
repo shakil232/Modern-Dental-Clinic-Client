@@ -6,8 +6,8 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 
-const AppointmentBooking = ({ booking, date }) => {
-    const { name, time, space, price } = booking;
+const AppointmentBooking = ({ service, date }) => {
+    const { servicesName, servicesTime, servicesSpace, servicesCost } = service;
     const [lgShow, setLgShow] = useState(false);
 
     // aos 
@@ -18,7 +18,8 @@ const AppointmentBooking = ({ booking, date }) => {
             duration: 1000,
             easing: 'ease',
         });
-    }, [])
+    }, []);
+    
 
     return (
         <div className="col-md-4 g-4">
@@ -28,11 +29,11 @@ const AppointmentBooking = ({ booking, date }) => {
              data-aos-duration="2000"
             >
                 <Card.Body className="text-center">
-                    <Card.Title className="text-primary">{name}</Card.Title>
-                    <Card.Subtitle className="mt-1 custom-dark">{time}</Card.Subtitle>
-                    <Card.Subtitle className="mt-1 custom-dark">price: ${price}</Card.Subtitle>
+                    <Card.Title className="text-primary">{servicesName}</Card.Title>
+                    <Card.Subtitle className="mt-1 custom-dark">{servicesTime}</Card.Subtitle>
+                    <Card.Subtitle className="mt-1 custom-dark">price: ${servicesCost}</Card.Subtitle>
                     <Card.Text className="text-muted mt-1 fs-6">
-                        {space} Spaces Available
+                        {servicesSpace} Spaces Available
                     </Card.Text>
                     <Button onClick={() => setLgShow(true)} className=" btn-main border-0 rounded-3 mt-1">Book Appointment </Button>
                 </Card.Body>
@@ -41,7 +42,7 @@ const AppointmentBooking = ({ booking, date }) => {
             <AppointmentFrom
                 lgShow={lgShow}
                 setLgShow={setLgShow}
-                booking={booking}
+                service={service}
                 date={date}
             ></AppointmentFrom>
         </div>

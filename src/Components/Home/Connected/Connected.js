@@ -7,6 +7,7 @@ import swal from 'sweetalert';
 const Connected = () => {
     const form = useRef();
 
+    // email-handler 
     const sendEmail = (e) => {
         e.preventDefault();
 
@@ -18,7 +19,7 @@ const Connected = () => {
                     icon: "success",
                     button: "ok",
                 });
-               
+
             },
                 (error) => {
                     swal({
@@ -31,6 +32,7 @@ const Connected = () => {
 
         e.target.reset()
     };
+
 
     return (
         <section className="home-bg mt-5 pt-5">
