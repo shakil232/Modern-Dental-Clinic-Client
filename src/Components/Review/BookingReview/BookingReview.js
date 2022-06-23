@@ -80,7 +80,7 @@ const BookingReview = () => {
             <section >
                 <NavBar />
                 <main className="container mt-5">
-                    <h3 className="custom-primary">Your Appointments</h3>
+                    <h3 className="custom-primary">Checkout</h3>
 
                     {
                         bookingReview.map(review =>

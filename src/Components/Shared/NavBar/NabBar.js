@@ -49,8 +49,8 @@ const NabBar = () => {
                                                 width="40"
                                                 height="40"
                                                 roundedCircle
-                                                src={user?.photo} />
-                                            :
+                                                src={user?.photo} /> :
+
                                             <Image
                                                 width="40"
                                                 height="40"
