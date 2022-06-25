@@ -1,9 +1,9 @@
 import React from 'react';
-import './Footer.css'
 import FooterCol from '../FooterCol/FooterCol';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faInstagram, faGooglePlusG } from '@fortawesome/free-brands-svg-icons'
 import { Button } from 'react-bootstrap';
+import './Footer.css'
 
 const Footer = () => {
     const noNamed = [

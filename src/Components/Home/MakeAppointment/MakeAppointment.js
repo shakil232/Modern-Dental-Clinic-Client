@@ -1,7 +1,7 @@
 import React from 'react';
-import './MakeAppointment.css';
 import Doctor from '../../../images/doctor.png'
 import { Button } from 'react-bootstrap';
+import './MakeAppointment.css'
 
 
 

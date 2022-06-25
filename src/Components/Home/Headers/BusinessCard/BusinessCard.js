@@ -1,6 +1,6 @@
 import React from 'react';
-import './BusinessCard.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import './BusinessCard.css'
 
 
 const BusinessCard = ({ business }) => {

@@ -17,7 +17,7 @@ const UpdateService = ({ restrictPermission }) => {
 
     // Load-Update-Service 
     useEffect(() => {
-        const url = `http://localhost:5000/singleService/${serviceId}`
+        const url = `https://enigmatic-harbor-19096.herokuapp.com/singleService/${serviceId}`
         axios.get(url)
             .then(res => setUpdate(res.data))
             .catch(err => swal("Failed!", "Please Try Again!", "error"))
@@ -38,7 +38,7 @@ const UpdateService = ({ restrictPermission }) => {
         }
 
         // UPDATE-SERVICE-POST-API
-        const url = `http://localhost:5000/serviceUpdate/${serviceId}`
+        const url = `https://enigmatic-harbor-19096.herokuapp.com/serviceUpdate/${serviceId}`
         axios.put(url, updateService)
             .then(res => {
                 if (res.data.modifiedCount > 0) {

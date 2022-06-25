@@ -25,7 +25,7 @@ const AppointmentFrom = ({ service, date, lgShow, setLgShow }) => {
         }
 
         // BOOKED-Appointment-database-post-api 
-        const url = `http://localhost:5000/addAppointments`
+        const url = `https://enigmatic-harbor-19096.herokuapp.com/addAppointments`
         axios.post(url, patientInfo)
             .then(res => {
                 if (res.data.insertedId) {
@@ -35,7 +35,6 @@ const AppointmentFrom = ({ service, date, lgShow, setLgShow }) => {
 
             })
             .catch(err => swal("Failed!", err.message, "error") )
-
     };
     
 

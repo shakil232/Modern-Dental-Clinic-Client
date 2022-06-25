@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Card } from 'react-bootstrap';
-import AppointmentFrom from '../AppointmentFrom/AppointmentFrom'
+import AppointmentFrom from '../AppointmentFrom/AppointmentFrom';
 // aos 
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 
 const AppointmentBooking = ({ service, date }) => {

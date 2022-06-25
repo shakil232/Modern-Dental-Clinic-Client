@@ -15,12 +15,12 @@ const ManageAppointment = ({ restrictPermission }) => {
 
     // loadAllService-data 
     useEffect(() => {
-        const url = `http://localhost:5000/allServices`
+        const url = `https://enigmatic-harbor-19096.herokuapp.com/allServices`
         axios.get(url)
             .then(res => setAllService(res.data))
             .catch(err => swal("Failed!", "Please Try Again!", "error"))
 
-    }, []);
+    }, [allService]);
 
 
     // Edit-service
@@ -45,7 +45,7 @@ const ManageAppointment = ({ restrictPermission }) => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    const url = `http://localhost:5000/serviceDelete/${deleteId}`
+                    const url = `https://enigmatic-harbor-19096.herokuapp.com/serviceDelete/${deleteId}`
                     axios.delete(url)
                         .then(res => {
                             if (res.data.deletedCount > 0) {

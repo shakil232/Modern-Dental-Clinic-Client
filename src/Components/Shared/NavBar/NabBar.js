@@ -1,13 +1,13 @@
 import React from 'react';
 import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import './NavBar.css';
 import useAuth from '../../../hooks/useAuth'
 import toast, { Toaster } from 'react-hot-toast';
 import Logo from '../../../images/main-logo.png';
 // icons 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTooth } from '@fortawesome/free-solid-svg-icons'
+import './NavBar.css'
 
 
 const NabBar = () => {

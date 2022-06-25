@@ -6,6 +6,8 @@ import useAuth from '../../../hooks/useAuth';
 import { Container } from 'react-bootstrap';
 import SyncLoader from "react-spinners/SyncLoader";
 
+
+
 const AvailableAppointment = ({ date }) => {
     const [allService, setAllService] = useState([]);
     // auth 
@@ -13,11 +15,11 @@ const AvailableAppointment = ({ date }) => {
 
     // // loadServiceData 
     useEffect(() => {
-        const url = `http://localhost:5000/allServices`
+        const url = `https://enigmatic-harbor-19096.herokuapp.com/allServices`
         axios.get(url)
             .then(res => setAllService(res.data))
             .catch(err => swal("Failed!", err.message, "error"))
-    }, []);
+    }, [allService]);
 
 
 

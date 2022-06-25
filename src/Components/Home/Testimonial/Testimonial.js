@@ -1,14 +1,14 @@
 import React from 'react';
 import TestimonialCard from '../TestimonialCard/TestimonialCard';
-import './Testimonial.css';
+import testimonialInfo from '../../../DataTable/TestimonialsInfo';
 // swiper
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react'
-import 'swiper/swiper.min.css'
-import 'swiper/modules/navigation/navigation.min.css'
-import 'swiper/modules/pagination/pagination.min.css'
+import 'swiper/swiper.min.css';
+import 'swiper/modules/navigation/navigation.min.css';
+import 'swiper/modules/pagination/pagination.min.css';
+import './Testimonial.css'
 // import Swiper core and required modules
 import SwiperCore, { Autoplay, Navigation, Pagination } from 'swiper';
-import testimonialInfo from '../../../DataTable/TestimonialsInfo';
 // install Swiper modules
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 

@@ -1,6 +1,5 @@
 import { Button, Image, Nav, Navbar, NavDropdown, Offcanvas } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
-import './DashBoard.css';
 import { Link, Route, Routes } from 'react-router-dom';
 // components 
 import AllAppointments from '../AllAppointments/AllAppointments';
@@ -28,6 +27,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import swal from 'sweetalert';
+import './DashBoard.css'
 
 
 
@@ -61,12 +61,12 @@ const DashBoard = () => {
 
     // loadAllService-data 
     useEffect(() => {
-        const url = `http://localhost:5000/allServices`
+        const url = `https://enigmatic-harbor-19096.herokuapp.com/allServices`
         axios.get(url)
             .then(res => setCheckService(res.data))
             .catch(err => swal("Failed!", "Please Try Again!", "error"))
 
-    }, []);
+    }, [checkService]);
 
     // restrictPermission-Check
     const restrictPermission = id => {
@@ -86,7 +86,7 @@ const DashBoard = () => {
 
     // admin-Api 
     useEffect(() => {
-        const url = `http://localhost:5000/isAdmin?email=${user.email}`
+        const url = `https://enigmatic-harbor-19096.herokuapp.com/isAdmin?email=${user.email}`
         axios.get(url)
             .then(res => {
                 if (res.data) {

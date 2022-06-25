@@ -13,16 +13,15 @@ const BookingReview = () => {
     const [bookingReview, setBookingReview] = useState([]);
     const navigate = useNavigate()
 
-    // // loadOrders 
-    const userToken = {
-        headers: {
-            'authorization': `Bearer ${localStorage.getItem('idToken')}`
-        }
-    };
+  
 
     useEffect(() => {
-        const url = `http://localhost:5000/appointmentByEmail?email=${email}`
-        axios.get(url, userToken)
+        const url = `https://enigmatic-harbor-19096.herokuapp.com/appointmentByEmail?email=${email}`
+        axios.get(url, {
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('idToken')}`
+            }
+        })
             .then(res => {
                 if (res.status === 200) {
                     setBookingReview(res.data)
@@ -33,7 +32,7 @@ const BookingReview = () => {
             })
             .catch(err => swal("Failed!", "Please Try Again!", "error"))
 
-    }, []);
+    }, [email,navigate]);
 
     //  cancel-appointment 
     const handelCancelAppointment = cancelId => {
@@ -47,7 +46,7 @@ const BookingReview = () => {
         })
             .then((willCancel) => {
                 if (willCancel) {
-                    const url = `http://localhost:5000/appointmentCancel/${cancelId}`
+                    const url = `https://enigmatic-harbor-19096.herokuapp.com/appointmentCancel/${cancelId}`
                     axios.delete(url)
                         .then(res => {
                             if (res.data.deletedCount > 0) {

@@ -10,12 +10,12 @@ const AllAppointments = () => {
 
     //   loadAppointment-data 
     useEffect(() => {
-        const url = `http://localhost:5000/allAppointments`
+        const url = `https://enigmatic-harbor-19096.herokuapp.com/allAppointments`
         axios.get(url)
             .then(res => setAppointments(res.data))
             .catch(err => swal("Failed!", "Please Try Again!", "error"))
 
-    }, []);
+    }, [appointments]);
 
     const handleStatusChange = (id, status) => {
         let modifiedOrders = [];
@@ -29,7 +29,7 @@ const AllAppointments = () => {
 
         const modifiedStatus = { id, status }
 
-        const url = `http://localhost:5000/statusUpdate`
+        const url = `https://enigmatic-harbor-19096.herokuapp.com/statusUpdate`
         axios.put(url, modifiedStatus)
             .then(res => {
                 if (res.data.modifiedCount > 0) {

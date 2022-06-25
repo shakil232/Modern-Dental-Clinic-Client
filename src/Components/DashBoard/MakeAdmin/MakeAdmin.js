@@ -27,7 +27,7 @@ const MakeAdmin = () => {
             'adminEmail': data.email,
         }
         // MAKE-ADMIN-Post-Api 
-        const url = `http://localhost:5000/makeAdmin`
+        const url = `https://enigmatic-harbor-19096.herokuapp.com/makeAdmin`
         axios.post(url, adminInfo)
             .then(res => {
                 if (res.data.insertedId) {
@@ -45,11 +45,11 @@ const MakeAdmin = () => {
 
     // MAKE-ADMIN-GET-Api 
     useEffect(() => {
-        const url = `http://localhost:5000/allAdmin`
+        const url = `https://enigmatic-harbor-19096.herokuapp.com/allAdmin`
         axios.get(url)
             .then(res => setAllAdmin(res.data))
             .catch(err => swal("Failed!", "Please Try Again!", "error"))
-    }, []);
+    }, [allAdmin]);
 
     // delete-admin
     const handelDelete = removeId => {
@@ -66,7 +66,7 @@ const MakeAdmin = () => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    const url = `http://localhost:5000/adminDelete/${removeId}`
+                    const url = `https://enigmatic-harbor-19096.herokuapp.com/adminDelete/${removeId}`
                     axios.delete(url)
                         .then(res => {
                             if (res.data.deletedCount > 0) {

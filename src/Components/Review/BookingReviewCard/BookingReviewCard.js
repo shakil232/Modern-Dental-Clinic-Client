@@ -3,9 +3,9 @@ import { Col, Row, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark, faBed, faPhone, faEnvelope, faTooth, faCalendarDay, faClock } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
-import 'tippy.js/animations/scale.css';
-import 'tippy.js/themes/light.css';
+import 'tippy.js/dist/tippy.css'
+import 'tippy.js/animations/scale.css'
+import 'tippy.js/themes/light.css'
 
 
 
