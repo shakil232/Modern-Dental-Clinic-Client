@@ -13,7 +13,7 @@ const BookingReview = () => {
     const [bookingReview, setBookingReview] = useState([]);
     const navigate = useNavigate()
 
-  
+
 
     useEffect(() => {
         const url = `https://enigmatic-harbor-19096.herokuapp.com/appointmentByEmail?email=${email}`
@@ -32,7 +32,7 @@ const BookingReview = () => {
             })
             .catch(err => swal("Failed!", "Please Try Again!", "error"))
 
-    }, [email,navigate]);
+    }, [email, navigate]);
 
     //  cancel-appointment 
     const handelCancelAppointment = cancelId => {
@@ -79,7 +79,9 @@ const BookingReview = () => {
             <section >
                 <NavBar />
                 <main className="container mt-5">
-                    <h3 className="custom-primary">Checkout</h3>
+                    <div className="checkout-header-underline mb-3">
+                        <h3 className="custom-primary">Checkout</h3>
+                    </div>
 
                     {
                         bookingReview.map(review =>

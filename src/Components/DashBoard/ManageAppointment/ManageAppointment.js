@@ -72,9 +72,9 @@ const ManageAppointment = ({ restrictPermission }) => {
 
             <main className=" bg-white p-4 h-auto rounded-3 shadow-lg">
                 <h3 className="custom-primary">Manage Appointments</h3>
-                <div className="mt-4">
+                <div className="mt-4 table-responsive" id='no-more-tables'>
 
-                    <Table striped borderless responsive>
+                    <Table className='table bg-white' striped>
                         <thead>
                             <tr className="custom-primary">
                                 <th>Name</th>
@@ -90,11 +90,11 @@ const ManageAppointment = ({ restrictPermission }) => {
                                 allService.map(service =>
 
                                     <tr key={service._id}>
-                                        <td> {service.servicesName} </td>
-                                        <td> {service.servicesTime} </td>
-                                        <td> {service.servicesSpace} </td>
-                                        <td> {service.servicesCost} </td>
-                                        <td>
+                                        <td data-title='Name' > {service.servicesName} </td>
+                                        <td data-title='Time' > {service.servicesTime} </td>
+                                        <td data-title='Space' > {service.servicesSpace} </td>
+                                        <td data-title='Cost' > {service.servicesCost} </td>
+                                        <td data-title='Action' >
                                             <Button onClick={() => handelEdit(service._id)} className="text-black" variant="outline-warning" size="sm">
                                                 <FontAwesomeIcon icon={faPenToSquare} /> Edit
 

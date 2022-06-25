@@ -45,11 +45,11 @@ const AllAppointments = () => {
         <section className="container mt-4 ">
             <main className=" bg-white p-4 h-auto rounded-3 shadow-lg">
                 <h3 className="custom-primary" >All-Appointment</h3>
-                <div className="mt-4">
+                <div className="mt-4 table-responsive" id='no-more-tables'>
 
-                    <Table striped borderless responsiver>
-                        <thead>
-                            <tr className='custom-primary'>
+                    <Table className='table bg-white' striped>
+                        <thead className='custom-primary'>
+                            <tr>
                                 <th>Name</th>
                                 <th>Contact</th>
                                 <th>Date</th>
@@ -62,11 +62,11 @@ const AllAppointments = () => {
                                 appointments.map(appointment =>
 
                                     <tr key={appointment._id}>
-                                        <td> {appointment.serviceName} </td>
-                                        <td> {appointment.PatientPhone} </td>
-                                        <td> {appointment.serviceDate} </td>
-                                        <td> {appointment.serviceTime} </td>
-                                        <td>
+                                        <td data-title='Name' > {appointment.serviceName} </td>
+                                        <td data-title='Contact' > {appointment.PatientPhone} </td>
+                                        <td data-title='Date' > {appointment.serviceDate} </td>
+                                        <td data-title='Time' > {appointment.serviceTime} </td>
+                                        <td data-title='Status' >
                                             <select
                                                 className={appointment.status === "Pending" ? "btn btn-danger" : appointment.status === "Done" ? "btn btn-success" : "btn btn-info"}
                                                 defaultValue={appointment.status}

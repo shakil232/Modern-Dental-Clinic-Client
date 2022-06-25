@@ -40,8 +40,8 @@ const RecentAppointment = () => {
                 </Col>
 
                 <Col md={7} sm={12} className="h-auto px-2 bg-white shadow rounded-3">
-                    <div className="mt-4">
-                        <Table hover borderless responsive>
+                    <div className="mt-4 table-responsive" id='no-more-tables'>
+                        <Table className='table bg-white' striped>
                             <thead>
                                 <tr className='custom-primary'>
                                     <th>PatientName</th>
@@ -55,10 +55,10 @@ const RecentAppointment = () => {
                                     todayAppointment.map(today =>
 
                                         <tr key={today._id}>
-                                            <td> {today.PatientName} </td>
-                                            <td> {today.serviceName} </td>
-                                            <td> {today.serviceTime} </td>
-                                            <td >
+                                            <td data-title='PatientName' > {today.PatientName} </td>
+                                            <td data-title='Service' > {today.serviceName} </td>
+                                            <td data-title='Time' > {today.serviceTime} </td>
+                                            <td data-title='Status' >
                                                 <p className={`book-${today.status}  rounded-3 text-white text-center`}>{today.status}</p>
                                             </td>
                                         </tr>
