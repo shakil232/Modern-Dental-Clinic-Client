@@ -18,7 +18,7 @@ const AddService = () => {
         }
 
         // post-Api
-        const url = `https://enigmatic-harbor-19096.herokuapp.com//addServices`
+        const url = `https://enigmatic-harbor-19096.herokuapp.com/addServices`
         axios.post(url,servicesInfo)
         .then(res =>{
             if(res.data.insertedId){
