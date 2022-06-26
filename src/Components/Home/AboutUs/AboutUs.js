@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import About from '../../../images/AboutUs.png'
+
 
 
 const AboutUs = () => {
@@ -8,7 +8,7 @@ const AboutUs = () => {
         <section className="container mt-5 pt-5">
             <div className="row g-4">
                 <div className="col-md-4 offset-md-1">
-                    <img className="img-fluid " src={About} alt="aboutUs" />
+                    <img className="img-fluid " src="https://i.ibb.co/JHgytv7/AboutUs.png" alt="aboutUs" />
                 </div>
                 <div className="col-md-6 m-auto">
                     <h2 className="custom-dark"> Exceptional Dental

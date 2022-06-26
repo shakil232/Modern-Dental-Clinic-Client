@@ -7,7 +7,7 @@ const TestimonialCard = ({ testimonial }) => {
     const { comments, name, address, image } = testimonial;
 
     return (
-        <Card className="h-auto" style={{ width: '19rem', }}>
+        <Card className="h-auto" style={{ width: '20rem', }}>
             <Card.Body >
                 <Card.Text className="text-muted text-justify">
                     {comments}

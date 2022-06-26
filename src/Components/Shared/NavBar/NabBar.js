@@ -3,7 +3,6 @@ import { Container, Image, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth'
 import toast, { Toaster } from 'react-hot-toast';
-import Logo from '../../../images/main-logo.png';
 // icons 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTooth } from '@fortawesome/free-solid-svg-icons'
@@ -28,7 +27,7 @@ const NabBar = () => {
             <Container>
                 <Navbar.Brand style={{ marginTop: '-10px' }} className="d-flex justify-content-center align-content-center  " as={Link} to="/" >
                     <FontAwesomeIcon className=" custom-primary fs-2" icon={faTooth} />
-                    <Image style={{ marginLeft: '-7px' }} width="100" height="35" src={Logo} alt="logo" />
+                    <Image style={{ marginLeft: '-7px' }} width="100" height="35" src="https://i.ibb.co/G5NMjwV/main-logo.png" alt="logo" />
                 </Navbar.Brand>
 
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />

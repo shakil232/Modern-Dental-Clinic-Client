@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Unautho from '../../../images/unauthorization.jpg'
 // icons 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLeftLong } from '@fortawesome/free-solid-svg-icons'
@@ -11,7 +10,7 @@ const Unauthorized = () => {
     return (
         <Container >
             <div className="h-50" >
-                <img className="img-fluid rounded-3 h-50" src={Unautho} alt="Unautho" />
+                <img className="img-fluid rounded-3 h-50" src="https://i.ibb.co/9npBWm1/unauthorization.jpg" alt="Unautho" />
             </div>
             <div className='text-center custom-dark mt-4'>
                 <h2>

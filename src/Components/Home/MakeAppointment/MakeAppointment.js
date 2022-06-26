@@ -1,5 +1,4 @@
 import React from 'react';
-import Doctor from '../../../images/doctor.png'
 import { Button } from 'react-bootstrap';
 import './MakeAppointment.css'
 
@@ -11,7 +10,7 @@ const MakeAppointment = () => {
             <main style={{ marginTop: "150px" }} className="container ">
                 <div className="row g-3">
                     <div className="col-md-4  offset-md-1">
-                        <img style={{ marginTop: "-90px" }} className="img-fluid" src={Doctor} alt="aboutUs" />
+                        <img style={{ marginTop: "-90px" }} className="img-fluid" src="https://i.ibb.co/5GqCXwX/doctor.png" alt="doctor" />
                     </div>
                     <div className="col-md-6 m-auto">
                         <h6 style={{ fontWeight: "500" }} className="custom-primary mt-3">Appointment</h6>

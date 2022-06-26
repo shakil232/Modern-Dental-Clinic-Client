@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// image 
-import Chair from '../../../../images/chair.png'
+
 
 
 const HeaderMain = () => {
@@ -20,7 +19,7 @@ const HeaderMain = () => {
                     <Link to="/appointment" className="btn btn-main border-0 rounded-3 mb-2">Get Appointment </Link>
                 </div>
                 <div className="col-md-6 ">
-                    <img className="img-fluid" src={Chair} alt="chair" />
+                    <img className="img-fluid" src="https://i.ibb.co/KycqjGj/chair.png" alt="chair" />
 
                 </div>
             </div>

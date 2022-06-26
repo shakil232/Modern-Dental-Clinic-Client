@@ -1,4 +1,3 @@
-import Wilson from '../images/Wilson Harry.png'
 
 
 const testimonialInfo = [
@@ -7,28 +6,28 @@ const testimonialInfo = [
         comments: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae explicabo consectetur ut aut. Quasi odio quia suscipit esse ducimus id et, exercitationem perferendis sequi dolore. ',
         name: ' Wilson Harry',
         address: 'New York',
-        image: Wilson
+        image: "https://i.ibb.co/1Jz5618/Wilson-Harry.png"
     },
     {
         id: '02',
         comments: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae explicabo consectetur ut aut. Quasi odio quia suscipit esse ducimus id et, exercitationem perferendis sequi dolore. ',
         name: ' Wilson Harry',
         address: 'california',
-        image: Wilson
+        image: "https://i.ibb.co/1Jz5618/Wilson-Harry.png"
     },
     {
         id: '03',
         comments: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae explicabo consectetur ut aut. Quasi odio quia suscipit esse ducimus id et, exercitationem perferendis sequi dolore.',
         name: ' Wilson Harry',
         address: 'Texas',
-        image: Wilson
+        image: "https://i.ibb.co/1Jz5618/Wilson-Harry.png"
     },
     {
         id: '04',
         comments: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae explicabo consectetur ut aut. Quasi odio quia suscipit esse ducimus id et, exercitationem perferendis sequi dolore.',
         name: ' Wilson Harry',
         address: 'New Jersey',
-        image: Wilson
+        image: "https://i.ibb.co/1Jz5618/Wilson-Harry.png"
     }
 ]
 

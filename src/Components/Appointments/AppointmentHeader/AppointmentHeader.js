@@ -1,6 +1,5 @@
 import React from 'react';
 import Calendar from 'react-calendar';
-import Chair from '../../../images/chair.png'
 import './AppointmentHeader.css'
 import 'react-calendar/dist/Calendar.css'
 
@@ -22,7 +21,7 @@ const AppointmentHeader = ({handelDateChange}) => {
                     </div>
 
                     <div className="col-md-6 ">
-                        <img className="img-fluid" src={Chair} alt="chair" />
+                        <img className="img-fluid" src="https://i.ibb.co/KycqjGj/chair.png" alt="chair" />
                     </div>
                 </div>
             </main>
